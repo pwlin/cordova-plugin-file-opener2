@@ -11,6 +11,7 @@ import android.net.Uri;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
+import org.apache.cordova.CordovaResourceApi;
 
 public class FileOpener2 extends CordovaPlugin {
 
@@ -72,7 +73,12 @@ public class FileOpener2 extends CordovaPlugin {
 	public void onDestroy() {
 	}
 
-	private boolean _open(String fileName, String contentType, CallbackContext callbackContext) throws JSONException {
+	private boolean _open(String fileArg, String contentType, CallbackContext callbackContext) throws JSONException {
+
+        CordovaResourceApi resourceApi = webView.getResourceApi();
+
+        Uri fileUri = resourceApi.remapUri(Uri.parse(fileArg));
+        String fileName = org.apache.cordova.FileHelper.stripFileProtocol(fileUri.toString());
 
 		File file = new File(fileName);
 
