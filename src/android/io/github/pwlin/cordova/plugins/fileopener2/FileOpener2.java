@@ -74,12 +74,15 @@ public class FileOpener2 extends CordovaPlugin {
 	}
 
 	private boolean _open(String fileArg, String contentType, CallbackContext callbackContext) throws JSONException {
-
-        CordovaResourceApi resourceApi = webView.getResourceApi();
-
-        Uri fileUri = resourceApi.remapUri(Uri.parse(fileArg));
-        String fileName = org.apache.cordova.FileHelper.stripFileProtocol(fileUri.toString());
-
+		String fileName = "";
+		try {
+	        CordovaResourceApi resourceApi = webView.getResourceApi();
+	        Uri fileUri = resourceApi.remapUri(Uri.parse(fileArg));
+	        fileName = org.apache.cordova.FileHelper.stripFileProtocol(fileUri.toString());
+		} catch (Exception e) {
+			fileName = fileArg;
+		}		
+        
 		File file = new File(fileName);
 
 		if (file.exists()) {
