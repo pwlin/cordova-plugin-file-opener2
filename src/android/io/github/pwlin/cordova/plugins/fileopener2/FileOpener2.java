@@ -96,7 +96,7 @@ public class FileOpener2 extends CordovaPlugin {
 				/*
 				 * @see  http://stackoverflow.com/questions/14321376/open-an-activity-from-a-cordovaplugin
 				 */
-				cordova.getActivity().startActivity(intent);
+				cordova.getActivity().startActivity(Intent.createChooser(intent,"Open File in..."));
 				callbackContext.success();
 				return true;
 
