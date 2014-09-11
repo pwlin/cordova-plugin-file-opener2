@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android" id="io.github.pwlin.cordova.plugins.fileopener2"
-	version="1.0.8">
+	version="1.0.9">
 
 	<name>File Opener2</name>
 	<description>A File Opener Plugin for Cordova.</description>
@@ -23,6 +23,9 @@
 				<param name="android-package" value="io.github.pwlin.cordova.plugins.fileopener2.FileOpener2" />
 			</feature>
 		</config-file>
+		<config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        </config-file>
 	</platform>
 
 	<!-- iOS -->
