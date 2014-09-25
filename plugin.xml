@@ -4,7 +4,7 @@
 	version="1.0.10">
 
 	<name>File Opener2</name>
-	<description>A File Opener Plugin for Cordova.</description>
+	<description>A File Opener Plugin for Cordova. (The Original Version)</description>
 	<license>MIT</license>
 
 	<engines>
