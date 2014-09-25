@@ -1,15 +1,22 @@
-A File Opener Plugin for Cordova
+A File Opener Plugin for Cordova (The Original Version)
 ==========================
 This plugin will open a file on your device file system with its default application.
 
 Requirements
 -------------
-- Android 4+ / iOS 6+
+- Android 4 or higher / iOS 6 or higher
 - Cordova 3.0 or higher
 
 Installation
 -------------
     cordova plugin add [url-of-the-git-repo]
+    
+PhoneGap Build
+---------------
+This Plugin is also available in PhoneGap Build Repository. Go to [https://build.phonegap.com/](https://build.phonegap.com/)
+And search for `io.github.pwlin.cordova.plugins.fileopener2`
+(There are a couple of other forks out there which are mostly out of date. Make sure to download the one with the exact same id as mentioned above) 
+
 
 Usage
 ------
