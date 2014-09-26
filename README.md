@@ -9,7 +9,7 @@ Requirements
 
 Installation
 -------------
-    cordova plugin add [url-of-the-git-repo]
+    cordova plugin add https://github.com/pwlin/cordova-plugin-file-opener2
     
 PhoneGap Build
 ---------------
