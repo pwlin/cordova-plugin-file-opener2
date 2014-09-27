@@ -70,7 +70,7 @@ Uninstall a package with its id.
 ###.appIsInstalled(_packageId, callbackContext_)
 Check if an app is already installed.
 
-    cordova.plugins.fileOpener2.isAppInstalled('com.adobe.reader', {
+    cordova.plugins.fileOpener2.appIsInstalled('com.adobe.reader', {
         success : function(res) {
             if (res.status === 0) {
                 console.log('Adobe Reader is not installed.');
