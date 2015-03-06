@@ -42,14 +42,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         NSArray *dotParts = [path componentsSeparatedByString:@"."];
         NSString *fileExt = [dotParts lastObject];
 
-        NSString *uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
+        uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        //NSLog(@"path %@, uti:%@", path, uti);
         NSURL *fileURL = [NSURL fileURLWithPath:path];
         
         localFile = fileURL.path;
+        
+        NSLog(@"looking for file at %@", fileURL);
+        NSFileManager *fm = [NSFileManager defaultManager];
+        if(![fm fileExistsAtPath:localFile]) {
+            NSLog(@"couldn't find file!");
+        } else {
+            NSLog(@"file located, handing off to UIDocumentInteractionController");
+        }
 
         self.controller = [UIDocumentInteractionController  interactionControllerWithURL:fileURL];
         self.controller.delegate = self;
@@ -57,7 +64,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         CGRect rect = CGRectMake(0, 0, 1000.0f, 150.0f);
         CDVPluginResult* pluginResult = nil;
-        BOOL wasOpened = [docController presentOptionsMenuFromRect:rect inView:cont.view animated:NO];
+        BOOL wasOpened = [self.controller presentOptionsMenuFromRect:rect inView:cont.view animated:NO];
 
         if(wasOpened) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @""];
