@@ -30,32 +30,31 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - (void) open: (CDVInvokedUrlCommand*)command {
 
-    NSString *path = [command.arguments objectAtIndex:0];
-    NSString *uti = nil;
-    if (command.arguments.count > 1) {
-        uti = [command.arguments objectAtIndex:1];
+    NSString *path = command.arguments[0];
+    NSString *uti = command.arguments[1];
+    if (!uti || (NSNull*)uti == [NSNull null]) {
+        NSArray *dotParts = [path componentsSeparatedByString:@"."];
+        NSString *fileExt = [dotParts lastObject];
+        
+        uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
     }
 
     CDVViewController* cont = (CDVViewController*)[ super viewController ];
 
-    if (!uti) {
-        NSArray *dotParts = [path componentsSeparatedByString:@"."];
-        NSString *fileExt = [dotParts lastObject];
-
-        uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
-    }
-
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSURL *fileURL = [NSURL fileURLWithPath:path];
+        // TODO: test if this is a URI or a path
+        NSURL *fileURL = [NSURL URLWithString:path];
         
         localFile = fileURL.path;
         
         NSLog(@"looking for file at %@", fileURL);
         NSFileManager *fm = [NSFileManager defaultManager];
         if(![fm fileExistsAtPath:localFile]) {
-            NSLog(@"couldn't find file!");
-        } else {
-            NSLog(@"file located, handing off to UIDocumentInteractionController");
+            NSDictionary *jsonObj = @{@"status" : @"9",
+                                      @"message" : @"File does not exist"};
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                         messageAsDictionary:jsonObj];
+            return;
         }
 
         self.controller = [UIDocumentInteractionController  interactionControllerWithURL:fileURL];
