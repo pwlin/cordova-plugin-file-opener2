@@ -52,8 +52,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         if(![fm fileExistsAtPath:localFile]) {
             NSDictionary *jsonObj = @{@"status" : @"9",
                                       @"message" : @"File does not exist"};
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
-                                         messageAsDictionary:jsonObj];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                                          messageAsDictionary:jsonObj];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
             return;
         }
 
