@@ -4,7 +4,7 @@ This plugin will open a file on your device file system with its default applica
 
 Requirements
 -------------
-- Android 4 or higher / iOS 6 or higher
+- Android 4 or higher / iOS 6 or higher / WP8
 - Cordova 3.0 or higher
 
 Installation
@@ -80,6 +80,9 @@ Check if an app is already installed.
         }
     });
 
+Contributors
+------------
+[@Gillard:](https://github.com/Gillardo/) Support for WP8
 
 LICENSE
 --------
