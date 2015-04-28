@@ -82,7 +82,7 @@ Check if an app is already installed.
 
 Contributors
 ------------
-[@Gillard:](https://github.com/Gillardo/) Support for WP8
+[@Gillardo:](https://github.com/Gillardo/) Support for WP8
 
 LICENSE
 --------
