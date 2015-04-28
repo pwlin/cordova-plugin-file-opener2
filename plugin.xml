@@ -37,4 +37,13 @@
         <header-file src="src/ios/FileOpener2.h" />
     </platform>
 
+	<!-- WP8 -->
+	<platform name="wp8">
+	<config-file target="config.xml" parent="/*">
+	  <feature name="FileOpener2">
+		<param name="wp-package" value="FileOpener2" />
+	  </feature>
+	</config-file>
+	<source-file src="src/wp8/FileOpener2.cs" />
+	</platform>
 </plugin>
