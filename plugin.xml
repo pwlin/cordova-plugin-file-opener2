@@ -39,11 +39,19 @@
 
 	<!-- WP8 -->
 	<platform name="wp8">
-	<config-file target="config.xml" parent="/*">
-	  <feature name="FileOpener2">
-		<param name="wp-package" value="FileOpener2" />
-	  </feature>
-	</config-file>
-	<source-file src="src/wp8/FileOpener2.cs" />
+		<config-file target="config.xml" parent="/*">
+		  <feature name="FileOpener2">
+			<param name="wp-package" value="FileOpener2" />
+		  </feature>
+		</config-file>
+		<source-file src="src/wp8/FileOpener2.cs" />
 	</platform>
+	
+
+	 <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/fileOpener2Proxy.js" name="fileOpener2Proxy">
+            <merges target="" />
+        </js-module>
+    </platform>
 </plugin>
