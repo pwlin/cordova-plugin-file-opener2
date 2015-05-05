@@ -17,16 +17,13 @@ namespace WPCordovaClassLib.Cordova.Commands
         public async void open(string options)
         {
             string[] args = JSON.JsonHelper.Deserialize<string[]>(options);
-            var fileName = System.IO.Path.GetFileName(args[0]);
+
             string aliasCurrentCommandCallbackId = args[2];
 
             try
             {
-                // Access isolated storage.
-                StorageFolder local = Windows.Storage.ApplicationData.Current.LocalFolder;
-
-                // Access the file.
-                StorageFile file = await local.GetFileAsync(fileName);
+                // Get the file.
+                StorageFile file = await Windows.Storage.StorageFile.GetFileFromPathAsync(args[0]);
 
                 // Launch the bug query file.
                 await Windows.System.Launcher.LaunchFileAsync(file);
