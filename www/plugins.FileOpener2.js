@@ -31,6 +31,12 @@ FileOpener2.prototype.open = function (fileName, contentType, callbackContext) {
     exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType]);
 };
 
+FileOpener2.prototype.openIOS = function (fileName, contentType, bounds, callbackContext) {
+    callbackContext = callbackContext || {};
+    bounds = bounds || [0, 0, 1000 , 150];
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType, bounds]);
+};
+
 FileOpener2.prototype.uninstall = function (packageId, callbackContext) {
     callbackContext = callbackContext || {};
     exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'uninstall', [packageId]);

@@ -34,6 +34,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     NSString *path = [[command.arguments objectAtIndex:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //NSString *uti = [command.arguments objectAtIndex:1];
 
+    CGRect bounds;
+    if (3 == [command.arguments count]) {
+        NSArray *boundsValues = [command.arguments objectAtIndex: 2];
+        bounds = CGRectMake([[boundsValues objectAtIndex:0] floatValue],
+                      [[boundsValues objectAtIndex:1] floatValue],
+                      [[boundsValues objectAtIndex:2] floatValue],
+                      [[boundsValues objectAtIndex:3] floatValue]);
+    } else {
+        bounds = CGRectMake(0, 0, 1000.0f, 150.0f);
+    }
+
     CDVViewController* cont = (CDVViewController*)[ super viewController ];
 
     NSArray *dotParts = [path componentsSeparatedByString:@"."];
@@ -57,9 +68,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             docController.delegate = self;
             docController.UTI = uti;
 
-            CGRect rect = CGRectMake(0, 0, 1000.0f, 150.0f);
             CDVPluginResult* pluginResult = nil;
-            BOOL wasOpened = [docController presentOptionsMenuFromRect:rect inView:cont.view animated:NO];
+            BOOL wasOpened = [docController presentOptionsMenuFromRect:bounds inView:cont.view animated:NO];
             //presentOptionsMenuFromRect
             //presentOpenInMenuFromRect
 
