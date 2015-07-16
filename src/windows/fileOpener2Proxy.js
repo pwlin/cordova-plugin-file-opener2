@@ -6,8 +6,7 @@
 
 	    open: function (successCallback, errorCallback, args) {
 	        Windows.Storage.StorageFile.getFileFromPathAsync(args[0]).then(function (file) {
-	            var options = new Windows.System.LauncherOptions();
-	            options.displayApplicationPicker = true;
+	            var options = new Windows.System.LauncherOptions();	            
 
 	            Windows.System.Launcher.launchFileAsync(file, options).then(function (success) {
 	                if (success) {
