@@ -60,7 +60,7 @@ Open a PDF document with the default PDF reader and optional callback object:
 Notes
 ------
 
-- For properly opening a any file, you must already have an suitable reader for that particular file type already installed on your device. Otherwise this will not work.
+- For properly opening _any_ file, you must already have a suitable reader for that particular file type already installed on your device. Otherwise this will not work.
 
 
 - [It is reported](https://github.com/pwlin/cordova-plugin-file-opener2/issues/2#issuecomment-41295793) that in iOS, you might need to remove `<preference name="iosPersistentFileLocation" value="Library" />` from your `config.xml`
