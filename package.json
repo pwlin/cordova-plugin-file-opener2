@@ -1,0 +1,39 @@
+{
+  "name": "cordova-plugin-file-opener2",
+  "version": "2.0.0",
+  "description": "A File Opener Plugin for Cordova. (The Original Version)",
+  "cordova": {
+    "id": "cordova-plugin-file-opener2",
+    "platforms": [
+      "android",
+      "ios",
+      "wp8",
+      "windows"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pwlin/cordova-plugin-file-opener2.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-wp8",
+    "cordova-windows"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": {
+    "name": "pwlin05@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pwlin/cordova-plugin-file-opener2/issues"
+  },
+  "homepage": "https://github.com/pwlin/cordova-plugin-file-opener2#readme"
+}

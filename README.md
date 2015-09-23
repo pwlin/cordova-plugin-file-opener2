@@ -1,3 +1,14 @@
+Contributors
+------------
+[@Gillardo](https://github.com/Gillardo/)
+
+[@TankOs](https://github.com/TankOs)
+
+[@Rovi23](https://github.com/Rovi23)
+
+[@josemanuelbd](https://github.com/josemanuelbd)
+
+
 A File Opener Plugin for Cordova (The Original Version)
 ==========================
 This plugin will open a file on your device file system with its default application.
@@ -9,17 +20,21 @@ Requirements
 
 Installation
 -------------
-    cordova plugin add https://github.com/pwlin/cordova-plugin-file-opener2
+    cordova plugin add cordova-plugin-file-opener2
     
-PhoneGap Build
----------------
-This Plugin is also available in PhoneGap Build Repository. Go to [https://build.phonegap.com/](https://build.phonegap.com/)
-And search for `io.github.pwlin.cordova.plugins.fileopener2`
-(There are a couple of other forks out there which are mostly out of date. Make sure to download the one with the exact same id as mentioned above) 
-
-
 Usage
 ------
+    cordova.plugins.fileOpener2.open(
+        filePath, 
+        fileType, 
+        {
+            error : function(){ }, 
+            success : function(){ } 
+        } 
+    );
+
+Examples
+--------
 Open an APK install dialog:
 
     cordova.plugins.fileOpener2.open(
@@ -45,7 +60,7 @@ Open a PDF document with the default PDF reader and optional callback object:
 Notes
 ------
 
-- For properly opening a PDF file, you must already have a PDF reader (Acrobat Reader, Foxit Mobile PDF, etc. ) installed on your mobile device. Otherwise this will not work
+- For properly opening a any file, you must already have an suitable reader for that particular file type already installed on your device. Otherwise this will not work.
 
 
 - [It is reported](https://github.com/pwlin/cordova-plugin-file-opener2/issues/2#issuecomment-41295793) that in iOS, you might need to remove `<preference name="iosPersistentFileLocation" value="Library" />` from your `config.xml`
@@ -79,10 +94,6 @@ Check if an app is already installed.
             }
         }
     });
-
-Contributors
-------------
-[@Gillardo:](https://github.com/Gillardo/) Support for WP8
 
 LICENSE
 --------
