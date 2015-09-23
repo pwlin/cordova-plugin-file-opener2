@@ -43,12 +43,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	NSString *uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //NSLog(@"path %@, uti:%@", path, uti);
+        NSLog(@"TRAZAAAAAAAA");
+        NSLog(@"path %@, uti:%@", path, uti);
         NSURL *fileURL = nil;
 
         //fileURL = [NSURL URLWithString:path];
         fileURL = [NSURL fileURLWithPath:path];
-        
+        NSLog(@"%@",fileURL);
         localFile = fileURL.path;
 
         dispatch_async(dispatch_get_main_queue(), ^{
