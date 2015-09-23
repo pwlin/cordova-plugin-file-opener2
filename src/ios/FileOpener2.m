@@ -47,8 +47,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         NSURL *fileURL = nil;
 
         //fileURL = [NSURL URLWithString:path];
-        fileURL = [NSURL fileURLWithPath:path];
-        
+        fileURL = [NSURL URLWithString:path];
+        //NSLog(@"%@",fileURL);
         localFile = fileURL.path;
 
         dispatch_async(dispatch_get_main_queue(), ^{
