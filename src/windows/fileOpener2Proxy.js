@@ -44,9 +44,8 @@
 	        var getFile = getFileLoaderForScheme(path);
 
 	        getFile(path).then(function (file) {
-	            var options = new Windows.System.LauncherOptions();	           
-	            options.displayApplicationPicker = true;
-				
+	            var options = new Windows.System.LauncherOptions();
+
 	            Windows.System.Launcher.launchFileAsync(file, options).then(function (success) {
 	                if (success) {
 	                    successCallback();
