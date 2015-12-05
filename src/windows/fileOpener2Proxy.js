@@ -45,14 +45,18 @@
 
 	        getFile(path).then(function (file) {
 	            var options = new Windows.System.LauncherOptions();
-
-	            Windows.System.Launcher.launchFileAsync(file, options).then(function (success) {
-	                if (success) {
-	                    successCallback();
-	                } else {
-	                    errorCallback();
-	                }
-	            });
+                try{
+                    Windows.System.Launcher.launchFileAsync(file, options)
+                        .then(function (success) {
+                            if (success) {
+                                successCallback();
+                            } else {
+                                errorCallback();
+                            }
+                        });
+                }catch(e){
+                    errorCallback(e);
+                }
 
 	        }, function (errror) {
 	            console.log("Error abriendo el archivo");
