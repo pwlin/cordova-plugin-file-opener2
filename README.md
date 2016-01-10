@@ -1,6 +1,6 @@
 Contributors
 ------------
-[@Gillardo](https://github.com/Gillardo/), [@TankOs](https://github.com/TankOs), [@Rovi23](https://github.com/Rovi23), [@josemanuelbd](https://github.com/josemanuelbd), [@ielcoro](https://github.com/ielcoro), [@keturn](https://github.com/keturn), [@conform](https://github.com/conform), [@guyc](https://github.com/guyc)
+[@Gillardo](https://github.com/Gillardo/), [@TankOs](https://github.com/TankOs), [@Rovi23](https://github.com/Rovi23), [@josemanuelbd](https://github.com/josemanuelbd), [@ielcoro](https://github.com/ielcoro), [@keturn](https://github.com/keturn), [@conform](https://github.com/conform), [@guyc](https://github.com/guyc), [@arj03](https://github.com/arj03)
 
 
 A File Opener Plugin for Cordova (The Original Version)
@@ -78,6 +78,18 @@ Uninstall a package with its id.
         },
         success : function() {
             console.log('Uninstall intent activity started.');
+        }
+    });
+
+###.install(_packageId, callbackContext_)
+Install a package with its id.
+
+    cordova.plugins.fileOpener2.install('com.zynga.FarmVille2CountryEscape', {
+        error : function(e) {
+            console.log('Error status: ' + e.status + ' - Error message: ' + e.message);    
+        },
+        success : function() {
+            console.log('Install intent activity started.');
         }
     });
 

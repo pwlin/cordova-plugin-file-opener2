@@ -36,6 +36,11 @@ FileOpener2.prototype.uninstall = function (packageId, callbackContext) {
     exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'uninstall', [packageId]);
 };
 
+FileOpener2.prototype.install = function (packageId, callbackContext) {
+    callbackContext = callbackContext || {};
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'install', [packageId]);
+};
+
 FileOpener2.prototype.appIsInstalled = function (packageId, callbackContext) {
     callbackContext = callbackContext || {};
     exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'appIsInstalled', [packageId]);

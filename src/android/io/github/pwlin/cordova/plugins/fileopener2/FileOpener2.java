@@ -55,6 +55,9 @@ public class FileOpener2 extends CordovaPlugin {
 		if (action.equals("open")) {
 			this._open(args.getString(0), args.getString(1), callbackContext);
 		} 
+		else if (action.equals("install")) {
+			this._install(args.getString(0), callbackContext);
+		}
 		else if (action.equals("uninstall")) {
 			this._uninstall(args.getString(0), callbackContext);
 		}
@@ -112,6 +115,21 @@ public class FileOpener2 extends CordovaPlugin {
 			JSONObject errorObj = new JSONObject();
 			errorObj.put("status", PluginResult.Status.ERROR.ordinal());
 			errorObj.put("message", "File not found");
+			callbackContext.error(errorObj);
+		}
+	}
+	
+	private void _install(String packageId, CallbackContext callbackContext) throws JSONException {
+		if (!this._appIsInstalled(packageId)) {
+		        Intent goToMarket = new Intent(Intent.ACTION_VIEW);
+		        goToMarket.setData(Uri.parse("market://details?id=" + packageId));
+		        cordova.getActivity().startActivity(goToMarket);
+		        callbackContext.success();
+		}
+		else {
+			JSONObject errorObj = new JSONObject();
+			errorObj.put("status", PluginResult.Status.ERROR.ordinal());
+			errorObj.put("message", "This package is installed");
 			callbackContext.error(errorObj);
 		}
 	}
