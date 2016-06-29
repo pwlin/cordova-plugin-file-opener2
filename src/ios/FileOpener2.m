@@ -38,6 +38,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
         uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
     }
+    
+    CGRect bounds;
+    if (3 >= [command.arguments count]) {
+        NSArray *boundsValues = [command.arguments objectAtIndex: 2];
+        bounds = CGRectMake([[boundsValues objectAtIndex:0] floatValue],
+                        [[boundsValues objectAtIndex:1] floatValue],
+                        [[boundsValues objectAtIndex:2] floatValue],
+                        [[boundsValues objectAtIndex:3] floatValue]);
+      } else {
+          bounds = CGRectMake(0, 0, 1000.0f, 150.0f);
+     }
 
     CDVViewController* cont = (CDVViewController*)[ super viewController ];
 
@@ -62,9 +73,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         self.controller.delegate = self;
         self.controller.UTI = uti;
 
-        CGRect rect = CGRectMake(0, 0, 1000.0f, 150.0f);
         CDVPluginResult* pluginResult = nil;
-        BOOL wasOpened = [self.controller presentOptionsMenuFromRect:rect inView:cont.view animated:NO];
+        BOOL wasOpened = [self.controller presentOptionsMenuFromRect:bounds inView:cont.view animated:NO];
 
         if(wasOpened) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @""];
