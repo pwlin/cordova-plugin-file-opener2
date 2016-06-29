@@ -26,19 +26,19 @@ var exec = require('cordova/exec');
 
 function FileOpener2() {}
 
-FileOpener2.prototype.open = function (fileName, contentType, callbackContext) {
-    callbackContext = callbackContext || {};
-    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType]);
+FileOpener2.prototype.open = function (fileName, contentType, options) {
+    options = options || {};
+    exec(options.success || null, options.error || null, 'FileOpener2', 'open', [fileName, contentType, options.bounds]);
 };
 
-FileOpener2.prototype.uninstall = function (packageId, callbackContext) {
-    callbackContext = callbackContext || {};
-    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'uninstall', [packageId]);
+FileOpener2.prototype.uninstall = function (packageId, options) {
+    options = options || {};
+    exec(options.success || null, options.error || null, 'FileOpener2', 'uninstall', [packageId]);
 };
 
-FileOpener2.prototype.appIsInstalled = function (packageId, callbackContext) {
-    callbackContext = callbackContext || {};
-    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'appIsInstalled', [packageId]);
+FileOpener2.prototype.appIsInstalled = function (packageId, options) {
+    options = options || {};
+    exec(options.success || null, options.error || null, 'FileOpener2', 'appIsInstalled', [packageId]);
 };
 
 module.exports = new FileOpener2();
