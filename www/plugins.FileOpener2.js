@@ -28,7 +28,7 @@ function FileOpener2() {}
 
 FileOpener2.prototype.open = function (fileName, contentType, options) {
     options = options || {};
-    exec(options.success || null, options.error || null, 'FileOpener2', 'open', [fileName, contentType, options.bounds]);
+    exec(options.success || null, options.error || null, 'FileOpener2', 'open', [fileName, contentType, options.position]);
 };
 
 FileOpener2.prototype.uninstall = function (packageId, options) {
