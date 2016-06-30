@@ -27,8 +27,11 @@ Usage
         {
             error : function(){ }, 
             success : function(){ } 
+            position : [x, y]
         } 
     );
+    
+`position` array of coordinates from top-left device screen, use for iOS dialog positioning
 
 Examples
 --------
