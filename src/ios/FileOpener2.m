@@ -43,7 +43,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     dispatch_async(dispatch_get_main_queue(), ^{
         // TODO: test if this is a URI or a path
-        NSURL *fileURL = [NSURL URLWithString:path];
+        NSURL *fileURL = [NSURL fileURLWithPath:path];
         
         localFile = fileURL.path;
         
