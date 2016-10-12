@@ -25,7 +25,7 @@
 
 	    var applicationUri = new Windows.Foundation.Uri(newUri);
 
-	    return Windows.Storage.StorageFile.getFileFromApplicationUriAsync(applicationUri);;
+	    return Windows.Storage.StorageFile.getFileFromApplicationUriAsync(applicationUri);
 	}
 
 	function getFileFromFileUri(uri) {
