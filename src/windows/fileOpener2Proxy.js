@@ -83,6 +83,7 @@
 
 	        }, function (error) {
 	            console.log("Error while opening the file: "+error);
+		    errorCallback(error);
 	        });
 		}
 		
