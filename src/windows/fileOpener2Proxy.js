@@ -75,7 +75,7 @@
 	        getFile(path).then(function (file) {
 	            var options = new Windows.System.LauncherOptions();
 	            
-	            Windows.System.Launcher.launchFileAsync(file, options).done(function (success) {
+	            Windows.System.Launcher.launchFileAsync(file, options).then(function (success) {
 	                successCallback();
 	            }, function (error) {
 	                errorCallback(error);
