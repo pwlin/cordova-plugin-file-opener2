@@ -1,13 +1,13 @@
 Contributors
 ------------
-[@Gillardo](https://github.com/Gillardo/), [@TankOs](https://github.com/TankOs), [@Rovi23](https://github.com/Rovi23), [@josemanuelbd](https://github.com/josemanuelbd), [@ielcoro](https://github.com/ielcoro), [@keturn](https://github.com/keturn), [@conform](https://github.com/conform), [@guyc](https://github.com/guyc), [@J3r0M3D3V](https://github.com/J3r0M3D3V), [@WuglyakBolgoink](https://github.com/WuglyakBolgoink), [@lincolnthree](https://github.com/lincolnthree)
+[@Gillardo](https://github.com/Gillardo/), [@TankOs](https://github.com/TankOs), [@Rovi23](https://github.com/Rovi23), [@josemanuelbd](https://github.com/josemanuelbd), [@ielcoro](https://github.com/ielcoro), [@keturn](https://github.com/keturn), [@conform](https://github.com/conform), [@guyc](https://github.com/guyc), [@J3r0M3D3V](https://github.com/J3r0M3D3V), [@WuglyakBolgoink](https://github.com/WuglyakBolgoink), [@lincolnthree](https://github.com/lincolnthree), [@rocco](https://github.com/rocco/)
 
 
 A File Opener Plugin for Cordova (The Original Version)
 ==========================
 This plugin will open a file on your device file system with its default application.
 
-Current Version: 2.0.4
+Current Version: 2.0.5
 ----------------
 
 Requirements
