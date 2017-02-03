@@ -7,7 +7,7 @@ A File Opener Plugin for Cordova (The Original Version)
 ==========================
 This plugin will open a file on your device file system with its default application.
 
-Current Version: 2.0.6
+Current Version: 2.0.7
 ----------------
 
 Requirements
