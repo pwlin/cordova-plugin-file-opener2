@@ -168,6 +168,8 @@ public class FileOpener2 extends CordovaPlugin {
 	private String stripFileProtocol(String uriString) {
 		if (uriString.startsWith("file://")) {
 			uriString = uriString.substring(7);
+		} else if (uriString.startsWith("content://")) {
+			uriString = uriString.substring(10);
 		}
 		return uriString;
 	}
