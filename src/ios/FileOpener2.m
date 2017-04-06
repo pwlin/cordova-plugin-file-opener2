@@ -27,57 +27,69 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @implementation FileOpener2
+@synthesize controller = docController;
 
 - (void) open: (CDVInvokedUrlCommand*)command {
 
-    NSString *path = command.arguments[0];
-    NSString *uti = command.arguments[1];
-    if (!uti || (NSNull*)uti == [NSNull null]) {
-        NSArray *dotParts = [path componentsSeparatedByString:@"."];
-        NSString *fileExt = [dotParts lastObject];
-        
-        uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
-    }
+    NSString *path = [[command.arguments objectAtIndex:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSString *contentType = nil;
 
-    CDVViewController* cont = (CDVViewController*)[ super viewController ];
+	if([command.arguments count] == 2) { // Includes contentType
+		contentType = [command.arguments objectAtIndex:1];
+	}
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // TODO: test if this is a URI or a path
-        // Use one of the following lines
-        //NSURL *fileURL = [NSURL URLWithString:path];
-        NSURL *fileURL = [NSURL fileURLWithPath:path];
+	CDVViewController* cont = (CDVViewController*)[super viewController];
+	self.cdvViewController = cont;
 
-        localFile = fileURL.path;
-        
-        NSLog(@"looking for file at %@", fileURL);
-        NSFileManager *fm = [NSFileManager defaultManager];
-        if(![fm fileExistsAtPath:localFile]) {
-            NSDictionary *jsonObj = @{@"status" : @"9",
-                                      @"message" : @"File does not exist"};
-            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
-                                                          messageAsDictionary:jsonObj];
-            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-            return;
-        }
+	NSArray *dotParts = [path componentsSeparatedByString:@"."];
+	NSString *fileExt = [dotParts lastObject];
 
-        self.controller = [UIDocumentInteractionController  interactionControllerWithURL:fileURL];
-        self.controller.delegate = self;
-        self.controller.UTI = uti;
+	NSString *uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
 
-        CGRect rect = CGRectMake(0, 0, 1000.0f, 150.0f);
-        CDVPluginResult* pluginResult = nil;
-        BOOL wasOpened = [self.controller presentOptionsMenuFromRect:rect inView:cont.view animated:NO];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		NSURL *fileURL = [NSURL URLWithString:path];
 
-        if(wasOpened) {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @""];
-        } else {
-            NSDictionary *jsonObj = @{@"status" : @"9",
-                                      @"message" : @"Could not handle UTI"};
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
-                                         messageAsDictionary:jsonObj];
-        }
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-    });
+		localFile = fileURL.path;
+
+	    NSLog(@"looking for file at %@", fileURL);
+	    NSFileManager *fm = [NSFileManager defaultManager];
+	    if(![fm fileExistsAtPath:localFile]) {
+	    	NSDictionary *jsonObj = @{@"status" : @"9",
+	    	@"message" : @"File does not exist"};
+	    	CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:jsonObj];
+	      	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+	      	return;
+    	}
+
+		docController = [UIDocumentInteractionController  interactionControllerWithURL:fileURL];
+		docController.delegate = self;
+		docController.UTI = uti;
+
+		CDVPluginResult* pluginResult = nil;
+
+		//Opens the file preview
+		BOOL wasOpened = [docController presentPreviewAnimated: NO];
+
+		if(wasOpened) {
+			pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @""];
+			//NSLog(@"Success");
+		} else {
+			NSDictionary *jsonObj = [ [NSDictionary alloc]
+				initWithObjectsAndKeys :
+				@"9", @"status",
+				@"Could not handle UTI", @"message",
+				nil
+			];
+			pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:jsonObj];
+		}
+		[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+	});
 }
 
+@end
+
+@implementation FileOpener2 (UIDocumentInteractionControllerDelegate)
+	- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+		return self.cdvViewController;
+	}
 @end
