@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-file-opener2" version="2.0.11">
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-file-opener2" version="2.0.12">
 
     <name>File Opener2</name>
     <description>A File Opener Plugin for Cordova. (The Original Version)</description>
@@ -26,17 +26,11 @@
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-          <provider
-            android:name="io.github.pwlin.cordova.plugins.fileopener2.FileProvider"
-            android:authorities="$PACKAGE_NAME.opener.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-              android:name="android.support.FILE_PROVIDER_PATHS"
-              android:resource="@xml/opener_paths"/>
+          <provider android:name="io.github.pwlin.cordova.plugins.fileopener2.FileProvider" android:authorities="$PACKAGE_NAME.opener.provider" android:exported="false" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/opener_paths" />
           </provider>
         </config-file>
-        <source-file src="src/android/res/xml/opener_paths.xml" target-dir="res/xml"/>
+        <source-file src="src/android/res/xml/opener_paths.xml" target-dir="res/xml" />
         <framework src="com.android.support:support-v4:+" />
     </platform>
 
@@ -61,8 +55,7 @@
 		<source-file src="src/wp8/FileOpener2.cs" />
 	</platform>
 
-
-	 <!-- windows -->
+	<!-- windows -->
     <platform name="windows">
         <js-module src="src/windows/fileOpener2Proxy.js" name="fileOpener2Proxy">
             <merges target="" />
