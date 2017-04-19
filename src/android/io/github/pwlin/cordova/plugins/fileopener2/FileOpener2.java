@@ -98,7 +98,7 @@ public class FileOpener2 extends CordovaPlugin {
 			try {
 				Uri path = Uri.fromFile(file);
 				Intent intent = new Intent(Intent.ACTION_VIEW);
-				if(Build.VERSION.SDK_INT >= 23 && !(contentType.equals("application/vnd.android.package-archive"))){
+				if(Build.VERSION.SDK_INT >= 23 && !(contentType.equals("application/vnd.android.package-archive") && Build.VERSION.SDK_INT == 23)){
 
 					Context context = cordova.getActivity().getApplicationContext();
 					path = FileProvider.getUriForFile(context, cordova.getActivity().getPackageName() + ".opener.provider", file);
