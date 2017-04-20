@@ -65,22 +65,21 @@ Notes
 - If you are wondering what MIME-type should you pass as the second argument to `open` function, [here is a list of all known MIME-types](http://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=co)
 
 Additional iOS Functions
------------------------------
-The following functions are available in iOS platform
 ---
+The following functions are available in iOS platform:
 
-showOpenWithDialog(fileName, contentType, callbackContext)
----
+`.showOpenWithDialog(fileName, contentType, callbackContext)`
+
 Same as `open` function, but this will show openWith dialog on iOS for sending files into another apps.
 
+---
 
 Additional Android Functions
------------------------------
-The following functions are available in Android platform
 ---
+The following functions are available in Android platform:
 
-.uninstall(_packageId, callbackContext_)
----
+`.uninstall(packageId, callbackContext)`
+
 Uninstall a package with its id.
 
     cordova.plugins.fileOpener2.uninstall('com.zynga.FarmVille2CountryEscape', {
@@ -92,8 +91,10 @@ Uninstall a package with its id.
         }
     });
 
-.appIsInstalled(_packageId, callbackContext_)
 ---
+
+`.appIsInstalled(packageId, callbackContext)`
+
 Check if an app is already installed.
 
     cordova.plugins.fileOpener2.appIsInstalled('com.adobe.reader', {
@@ -105,6 +106,8 @@ Check if an app is already installed.
             }
         }
     });
+
+---
 
 LICENSE
 --------
