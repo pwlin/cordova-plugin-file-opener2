@@ -69,7 +69,7 @@ Additional iOS Functions
 The following functions are available in iOS platform:
 
 `.showOpenWithDialog(fileName, contentType, callbackContext)`
-
+---
 Same as `open` function, but this will show openWith dialog on iOS for sending files into another apps.
 
 ---
@@ -79,7 +79,7 @@ Additional Android Functions
 The following functions are available in Android platform:
 
 `.uninstall(packageId, callbackContext)`
-
+---
 Uninstall a package with its id.
 
     cordova.plugins.fileOpener2.uninstall('com.zynga.FarmVille2CountryEscape', {
@@ -91,10 +91,8 @@ Uninstall a package with its id.
         }
     });
 
----
-
 `.appIsInstalled(packageId, callbackContext)`
-
+---
 Check if an app is already installed.
 
     cordova.plugins.fileOpener2.appIsInstalled('com.adobe.reader', {
