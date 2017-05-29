@@ -60,8 +60,11 @@ public class FileOpener2 extends CordovaPlugin {
 		if (action.equals("open")) {
 			String fileUrl = args.getString(0);
 			String contentType = args.getString(1);
-			Boolean openWith = (args.length() > 2) && args.getBoolean(2);
-			this._open(fileUrl, contentType, openWith, callbackContext);
+			Boolean openWithDefault = true;
+			if(args.length() > 2){
+				openWithDefault = args.getBoolean(2);
+			}
+			this._open(fileUrl, contentType, openWithDefault, callbackContext);
 		}
 		else if (action.equals("uninstall")) {
 			this._uninstall(args.getString(0), callbackContext);
@@ -87,7 +90,7 @@ public class FileOpener2 extends CordovaPlugin {
 		return true;
 	}
 
-	private void _open(String fileArg, String contentType, Boolean openWith, CallbackContext callbackContext) throws JSONException {
+	private void _open(String fileArg, String contentType, Boolean openWithDefault, CallbackContext callbackContext) throws JSONException {
 		String fileName = "";
 		try {
 			CordovaResourceApi resourceApi = webView.getResourceApi();
@@ -124,11 +127,11 @@ public class FileOpener2 extends CordovaPlugin {
 				 * @see
 				 * http://stackoverflow.com/questions/14321376/open-an-activity-from-a-cordovaplugin
 				 */
-				 if(openWith){
-                    cordova.getActivity().startActivity(Intent.createChooser(intent,"Open File in..."));
+				 if(openWithDefault){
+					 cordova.getActivity().startActivity(intent);
 				 }
 				 else{
-				    cordova.getActivity().startActivity(intent);
+					 cordova.getActivity().startActivity(Intent.createChooser(intent, "Open File in..."));
 				 }
 
 				callbackContext.success();
