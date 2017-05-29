@@ -58,7 +58,10 @@ public class FileOpener2 extends CordovaPlugin {
 	 */
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		if (action.equals("open")) {
-			this._open(args.getString(0), args.getString(1), callbackContext);
+			String fileUrl = args.getString(0);
+			String contentType = args.getString(1);
+			Boolean openWith = (args.length() > 2) && args.getBoolean(2);
+			this._open(fileUrl, contentType, openWith, callbackContext);
 		}
 		else if (action.equals("uninstall")) {
 			this._uninstall(args.getString(0), callbackContext);
@@ -84,7 +87,7 @@ public class FileOpener2 extends CordovaPlugin {
 		return true;
 	}
 
-	private void _open(String fileArg, String contentType, CallbackContext callbackContext) throws JSONException {
+	private void _open(String fileArg, String contentType, Boolean openWith, CallbackContext callbackContext) throws JSONException {
 		String fileName = "";
 		try {
 			CordovaResourceApi resourceApi = webView.getResourceApi();
@@ -98,7 +101,7 @@ public class FileOpener2 extends CordovaPlugin {
 			try {
 				Uri path = Uri.fromFile(file);
 				Intent intent = new Intent(Intent.ACTION_VIEW);
-				if((Build.VERSION.SDK_INT >= 23 && !contentType.equals("application/vnd.android.package-archive")) || (Build.VERSION.SDK_INT == 24 && contentType.equals("application/vnd.android.package-archive"))) {
+				if(Build.VERSION.SDK_INT >= 23 && !contentType.equals("application/vnd.android.package-archive")){
 
 					Context context = cordova.getActivity().getApplicationContext();
 					path = FileProvider.getUriForFile(context, cordova.getActivity().getPackageName() + ".opener.provider", file);
@@ -121,8 +124,13 @@ public class FileOpener2 extends CordovaPlugin {
 				 * @see
 				 * http://stackoverflow.com/questions/14321376/open-an-activity-from-a-cordovaplugin
 				 */
-				cordova.getActivity().startActivity(intent);
-				//cordova.getActivity().startActivity(Intent.createChooser(intent,"Open File in..."));
+				 if(openWith){
+                    cordova.getActivity().startActivity(Intent.createChooser(intent,"Open File in..."));
+				 }
+				 else{
+				    cordova.getActivity().startActivity(intent);
+				 }
+
 				callbackContext.success();
 			} catch (android.content.ActivityNotFoundException e) {
 				JSONObject errorObj = new JSONObject();
