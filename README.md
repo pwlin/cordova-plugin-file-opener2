@@ -54,6 +54,21 @@ Open a PDF document with the default PDF reader and optional callback object:
         }
     );
 
+Open a system modal to open PDF document with one of the already installed app and optional callback object:
+
+    cordova.plugins.fileOpener2.showOpenWithDialog(
+        '/sdcard/Download/starwars.pdf', // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
+        'application/pdf', 
+        { 
+            error : function(e) { 
+                console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+            },
+            success : function () {
+                console.log('file opened successfully'); 				
+            }
+        }
+    );
+
 Notes
 ------
 
@@ -63,16 +78,6 @@ Notes
 - [It is reported](https://github.com/pwlin/cordova-plugin-file-opener2/issues/2#issuecomment-41295793) that in iOS, you might need to remove `<preference name="iosPersistentFileLocation" value="Library" />` from your `config.xml`
 
 - If you are wondering what MIME-type should you pass as the second argument to `open` function, [here is a list of all known MIME-types](http://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=co)
-
-Additional iOS Functions
----
-The following functions are available in iOS platform:
-
-`.showOpenWithDialog(fileName, contentType, callbackContext)`
----
-Same as `open` function, but this will show openWith dialog on iOS for sending files into another apps.
-
----
 
 Additional Android Functions
 ---
