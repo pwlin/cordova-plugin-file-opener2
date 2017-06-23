@@ -35,6 +35,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
+import android.webkit.MimeTypeMap;
 
 import io.github.pwlin.cordova.plugins.fileopener2.FileProvider;
 
@@ -118,8 +120,13 @@ public class FileOpener2 extends CordovaPlugin {
 				    String packageName = resolveInfo.activityInfo.packageName;
 				    context.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
 					}
-				}
-				else {
+				}else if(Build.VERSION.SDK_INT == 23 && !contentType.equals("application/vnd.android.package-archive")){
+          Log.e("OPEN",fileName);
+          File file2 = new File(fileName);
+          if (file2.exists()) {
+            openFile(file2, cordova.getActivity());
+          }
+        } else {
 					intent.setDataAndType(path, contentType);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				}
@@ -149,6 +156,26 @@ public class FileOpener2 extends CordovaPlugin {
 		}
 	}
 
+  public void openFile(File file, Context context) {
+    Intent intent = new Intent();
+    intent.addFlags(268435456);
+    intent.setAction("android.intent.action.VIEW");
+    String type = getMIMEType(file);
+    intent.setDataAndType(Uri.fromFile(file), type);
+    try {
+      context.startActivity(intent);
+    } catch (Exception var5) {
+      var5.printStackTrace();
+    }
+
+  }
+  public String getMIMEType(File var0) {
+    String var1 = "";
+    String var2 = var0.getName();
+    String var3 = var2.substring(var2.lastIndexOf(".") + 1, var2.length()).toLowerCase();
+    var1 = MimeTypeMap.getSingleton().getMimeTypeFromExtension(var3);
+    return var1;
+  }
 	private void _uninstall(String packageId, CallbackContext callbackContext) throws JSONException {
 		if (this._appIsInstalled(packageId)) {
 			Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
