@@ -34,22 +34,32 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     NSString *path = [[command.arguments objectAtIndex:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	NSString *contentType = nil;
 	BOOL showPreview = YES;
+	BOOL useContentType = NO;
 
-	if([command.arguments count] == 2) { // Includes contentType
+	if([command.arguments count] >= 2) { // Includes contentType
 		contentType = [command.arguments objectAtIndex:1];
 	}
 
-	if ([command.arguments count] == 3) {
+	if ([command.arguments count] >= 3) {
 		showPreview = [[command.arguments objectAtIndex:2] boolValue];
+	}
+
+	if ([command.arguments count] >= 4) {
+		useContentType = [[command.arguments objectAtIndex:3] boolValue];
 	}
 
 	CDVViewController* cont = (CDVViewController*)[super viewController];
 	self.cdvViewController = cont;
+	NSString *uti = nil;
 
-	NSArray *dotParts = [path componentsSeparatedByString:@"."];
-	NSString *fileExt = [dotParts lastObject];
+	if(useContentType){
+		uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)contentType, NULL);
+	} else {
+		NSArray *dotParts = [path componentsSeparatedByString:@"."];
+		NSString *fileExt = [dotParts lastObject];
 
-	NSString *uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
+		uti = (__bridge NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExt, NULL);
+	}
 
 	dispatch_async(dispatch_get_main_queue(), ^{
 		NSURL *fileURL = [NSURL URLWithString:path];
