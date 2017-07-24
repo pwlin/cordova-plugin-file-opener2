@@ -38,6 +38,12 @@ FileOpener2.prototype.showOpenWithDialog = function (fileName, contentType, call
     exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType, false]);
 };
 
+FileOpener2.prototype.openWithContentType = function (fileName, contentType, callbackContext) {
+    callbackContext = callbackContext || {};
+    if(typeof contentType !== "string"){ throw new Error("contentType must be a String") }
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType, true, true]);
+};
+
 FileOpener2.prototype.uninstall = function (packageId, callbackContext) {
     callbackContext = callbackContext || {};
     exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'uninstall', [packageId]);
