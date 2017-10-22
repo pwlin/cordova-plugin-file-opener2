@@ -102,12 +102,28 @@ public class FileOpener2 extends CordovaPlugin {
 		File file = new File(fileName);
 		if (file.exists()) {
 			try {
-				Intent intent = new Intent(Intent.ACTION_VIEW);
+				Intent intent;
+				if (contentType.equals("application/vnd.android.package-archive")) {
+					// https://stackoverflow.com/questions/9637629/can-we-install-an-apk-from-a-contentprovider/9672282#9672282
+					intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+					Uri path;
+					if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+						path = Uri.fromFile(file);
+					} else {
+						Context context = cordova.getActivity().getApplicationContext();
+						path = FileProvider.getUriForFile(context, cordova.getActivity().getPackageName() + ".opener.provider", file);
+					}
+					intent.setDataAndType(path, contentType);
+					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-				Context context = cordova.getActivity().getApplicationContext();
-				Uri path = FileProvider.getUriForFile(context, cordova.getActivity().getPackageName() + ".opener.provider", file);
-				intent.setDataAndType(path, contentType);
-				intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
+				} else {
+					intent = new Intent(Intent.ACTION_VIEW);
+					Context context = cordova.getActivity().getApplicationContext();
+					Uri path = FileProvider.getUriForFile(context, cordova.getActivity().getPackageName() + ".opener.provider", file);
+					intent.setDataAndType(path, contentType);
+					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+				}
 
 				/*
 				 * @see
