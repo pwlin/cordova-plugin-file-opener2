@@ -111,12 +111,6 @@ public class FileOpener2 extends CordovaPlugin {
 					intent.setDataAndType(path, contentType);
 					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
 					//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-				 	List<ResolveInfo> infoList = context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-					for (ResolveInfo resolveInfo : infoList) {
-				    String packageName = resolveInfo.activityInfo.packageName;
-				    context.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-					}
 				}
 				else {
 					intent.setDataAndType(path, contentType);
