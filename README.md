@@ -84,7 +84,7 @@ The following limitations apply when opening an APK file for installation:
 - On Android 8+, your application must have the `ACTION_INSTALL_PACKAGE` permission. You can add it by adding this to your app's `config.xml` file:
 ```
     <platform name="android">
-        <config-file parent="/manifest" target="AndroidManifest.xml">
+        <config-file parent="/manifest" target="AndroidManifest.xml" xmlns:android="http://schemas.android.com/apk/res/android">
             <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
         </config-file>
     </platform>
