@@ -95,7 +95,7 @@ public class FileOpener2 extends CordovaPlugin {
 		try {
 			CordovaResourceApi resourceApi = webView.getResourceApi();
 			Uri fileUri = resourceApi.remapUri(Uri.parse(fileArg));
-			fileName = this.stripFileProtocol(fileUri.toString());
+			fileName = fileUri.getPath();
 		} catch (Exception e) {
 			fileName = fileArg;
 		}
@@ -178,13 +178,5 @@ public class FileOpener2 extends CordovaPlugin {
         return appInstalled;
 	}
 
-	private String stripFileProtocol(String uriString) {
-		if (uriString.startsWith("file://")) {
-			uriString = uriString.substring(7);
-		} else if (uriString.startsWith("content://")) {
-			uriString = uriString.substring(10);
-		}
-		return uriString;
-	}
-
 }
+
