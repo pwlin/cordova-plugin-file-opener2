@@ -11,4 +11,5 @@
     <external-cache-path name="external-cache" path="." />
     <!-- cordova.file.externalRootDirectory -->
     <external-path name="external" path="." />
+    <root-path name="root" path="." />
 </paths>
