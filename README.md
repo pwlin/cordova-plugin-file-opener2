@@ -16,58 +16,77 @@ Requirements
 
 Installation
 -------------
-    $ cordova plugin add cordova-plugin-file-opener2
-    $ cordova plugin add cordova-plugin-file-opener2  --variable ANDROID_SUPPORT_VERSION={required version}
+```shell
+$ cordova plugin add cordova-plugin-file-opener2
+$ cordova plugin add cordova-plugin-file-opener2  --variable ANDROID_SUPPORT_VERSION={required version}
+```
 
 Usage
 ------
-    cordova.plugins.fileOpener2.open(
-        filePath,
-        fileMIMEType,
-        {
-            error : function(){ },
-            success : function(){ }
-        }
-    );
+```javascript
+cordova.plugins.fileOpener2.open(
+    filePath,
+    fileMIMEType,
+    {
+        error : function(){ },
+        success : function(){ }
+    }
+);
+```
 
 Examples
 --------
 Open an APK install dialog:
 
-    cordova.plugins.fileOpener2.open(
-        '/sdcard/Download/gmail.apk',
-        'application/vnd.android.package-archive'
-    );
+```javascript
+cordova.plugins.fileOpener2.open(
+    '/sdcard/Download/gmail.apk',
+    'application/vnd.android.package-archive'
+);
+```
+
+Install From Market: to install an APK from a market place, such as Google Play or the App Store, you can use an `<a>` tag in combination with the `market://` protocol:
+
+```html
+<a href="market://details?id=xxxx" target="_system">Install from Google Play</a>
+<a href="itms-apps://itunes.apple.com/app/my-app/idxxxxxxxx?mt=8" target="_system">Install from App Store</a>
+```
+
+or in code:
+```javascript
+window.open("[market:// or itms-apps:// link]","_system");
+```
 
 Open a PDF document with the default PDF reader and optional callback object:
-
-    cordova.plugins.fileOpener2.open(
-        '/sdcard/Download/starwars.pdf', // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
-        'application/pdf',
-        {
-            error : function(e) {
-                console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
-            },
-            success : function () {
-                console.log('file opened successfully');
-            }
+```javascript
+cordova.plugins.fileOpener2.open(
+    '/sdcard/Download/starwars.pdf', // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
+    'application/pdf',
+    {
+        error : function(e) {
+            console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+        },
+        success : function () {
+            console.log('file opened successfully');
         }
-    );
-
+    }
+);
+```
 Open a system modal to open PDF document with one of the already installed app and optional callback object:
-
-    cordova.plugins.fileOpener2.showOpenWithDialog(
-        '/sdcard/Download/starwars.pdf', // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
-        'application/pdf',
-        {
-            error : function(e) {
-                console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
-            },
-            success : function () {
-                console.log('file opened successfully');
-            }
+```javascript
+cordova.plugins.fileOpener2.showOpenWithDialog(
+    '/sdcard/Download/starwars.pdf', // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
+    'application/pdf',
+    {
+        error : function(e) {
+            console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+        },
+        success : function () {
+            console.log('file opened successfully');
         }
-    );
+    }
+);
+```
 
 Notes
 ------
@@ -78,16 +97,17 @@ Notes
 
 - If you are wondering what MIME-type should you pass as the second argument to `open` function, [here is a list of all known MIME-types](http://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=co)
 
+
 Android APK installation limitation
 ---
 The following limitations apply when opening an APK file for installation:
 - On Android 8+, your application must have the `ACTION_INSTALL_PACKAGE` permission. You can add it by adding this to your app's `config.xml` file:
-```
-    <platform name="android">
-        <config-file parent="/manifest" target="AndroidManifest.xml" xmlns:android="http://schemas.android.com/apk/res/android">
-            <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-        </config-file>
-    </platform>
+```xml
+<platform name="android">
+    <config-file parent="/manifest" target="AndroidManifest.xml" xmlns:android="http://schemas.android.com/apk/res/android">
+        <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    </config-file>
+</platform>
 ```
 
 - Before Android 7, you can only install APKs from the "external" partition. For example, you can install from `cordova.file.externalDataDirectory`, but **not** from `cordova.file.dataDirectory`. Android 7+ does not have this limitation.
@@ -99,30 +119,30 @@ The following functions are available in Android platform:
 `.uninstall(packageId, callbackContext)`
 ---
 Uninstall a package with its id.
-
-    cordova.plugins.fileOpener2.uninstall('com.zynga.FarmVille2CountryEscape', {
-        error : function(e) {
-            console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
-        },
-        success : function() {
-            console.log('Uninstall intent activity started.');
-        }
-    });
-
+```javascript
+cordova.plugins.fileOpener2.uninstall('com.zynga.FarmVille2CountryEscape', {
+    error : function(e) {
+        console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+    },
+    success : function() {
+        console.log('Uninstall intent activity started.');
+    }
+});
+```
 `.appIsInstalled(packageId, callbackContext)`
 ---
 Check if an app is already installed.
-
-    cordova.plugins.fileOpener2.appIsInstalled('com.adobe.reader', {
-        success : function(res) {
-            if (res.status === 0) {
-                console.log('Adobe Reader is not installed.');
-            } else {
-                console.log('Adobe Reader is installed.')
-            }
+```javascript
+cordova.plugins.fileOpener2.appIsInstalled('com.adobe.reader', {
+    success : function(res) {
+        if (res.status === 0) {
+            console.log('Adobe Reader is not installed.');
+        } else {
+            console.log('Adobe Reader is installed.')
         }
-    });
-
+    }
+});
+```
 ---
 
 LICENSE
