@@ -45,7 +45,7 @@ FileOpener2.prototype.uninstall = function (packageId, callbackContext) {
 
 FileOpener2.prototype.appIsInstalled = function (packageId, callbackContext) {
     callbackContext = callbackContext || {};
-    exec(options.success || null, options.error || null, 'FileOpener2', 'appIsInstalled', [packageId]);
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'appIsInstalled', [packageId]);
 };
 
 module.exports = new FileOpener2();
