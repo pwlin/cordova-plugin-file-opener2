@@ -7,8 +7,7 @@ A File Opener Plugin for Cordova (The Original Version)
 ==========================
 This plugin will open a file on your device file system with its default application.
 
-Current Version: 2.1.0
-----------------
+[![npm version](https://badge.fury.io/js/cordova-plugin-file-opener2.svg)](https://badge.fury.io/js/cordova-plugin-file-opener2)
 
 Requirements
 -------------
