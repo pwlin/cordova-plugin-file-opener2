@@ -20,16 +20,10 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
+package io.github.pwlin.cordova.plugins.fileopener2;
 
-#import <Cordova/CDV.h>
-
-@interface FileOpener2 : CDVPlugin <UIDocumentInteractionControllerDelegate> {
-    NSString *localFile;
+/*
+ * http://stackoverflow.com/questions/40746144/error-with-duplicated-fileprovider-in-manifest-xml-with-cordova/41550634#41550634
+ */
+public class FileProvider extends android.support.v4.content.FileProvider {
 }
-
-@property(nonatomic, strong) UIDocumentInteractionController *controller;
-@property(nonatomic, strong) CDVViewController *cdvViewController;
-
-- (void) open: (CDVInvokedUrlCommand*)command;
-
-@end

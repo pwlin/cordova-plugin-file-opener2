@@ -27,13 +27,20 @@ var exec = require('cordova/exec');
 function FileOpener2() {}
 
 FileOpener2.prototype.open = function (fileName, contentType, options) {
+    contentType = contentType || ''; 
     options = options || {};
-    exec(options.success || null, options.error || null, 'FileOpener2', 'open', [fileName, contentType, options.position]);
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType, false, options.position]);
 };
 
-FileOpener2.prototype.uninstall = function (packageId, options) {
-    options = options || {};
-    exec(options.success || null, options.error || null, 'FileOpener2', 'uninstall', [packageId]);
+FileOpener2.prototype.showOpenWithDialog = function (fileName, contentType, callbackContext) {
+    contentType = contentType || '';
+    callbackContext = callbackContext || {};
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType, false]);
+};
+
+FileOpener2.prototype.uninstall = function (packageId, callbackContext) {
+    callbackContext = callbackContext || {};
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'uninstall', [packageId]);
 };
 
 FileOpener2.prototype.appIsInstalled = function (packageId, options) {
