@@ -75,11 +75,15 @@
 	        getFile(path).then(function (file) {
 	            var options = new Windows.System.LauncherOptions();
 	            
-	            Windows.System.Launcher.launchFileAsync(file, options).then(function (success) {
-	                successCallback();
-	            }, function (error) {
-	                errorCallback(error);
-	            });
+                try{
+	                Windows.System.Launcher.launchFileAsync(file, options).then(function (success) {
+	                    successCallback();
+	                }, function (error) {
+	                    errorCallback(error);
+	                });
+                }catch(error){
+                    errorCallback(error);
+                }
 
 	        }, function (error) {
 	            console.log("Error while opening the file: "+error);
