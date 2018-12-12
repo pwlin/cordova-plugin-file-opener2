@@ -6,8 +6,13 @@ This plugin will open a file on your device file system with its default applica
 
 Requirements
 -------------
-- Android 4 or higher / iOS 6 or higher / WP8
-- Cordova 3.0 or higher
+The following platforms and versions are supported:
+
+- Android 4.4+ / iOS 9+ / WP8
+- Cordova 6.0 or higher
+
+Versions lower than this may still work, but are not tested.
+
 
 Installation
 -------------
