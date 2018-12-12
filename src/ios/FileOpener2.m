@@ -38,14 +38,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	if ([command.arguments count] >= 3) {
 		showPreview = [[command.arguments objectAtIndex:2] boolValue];
 	}
-  
-  CGRect rect;
-  if ([command.arguments count] >= 4) {
-    NSArray *positionValues = command.arguments[3];
-    rect = CGRectMake(0,0,[[positionValues objectAtIndex:0] floatValue],[[positionValues objectAtIndex:1] floatValue]);
-  } else {
-    rect = CGRectMake(0, 0, cont.view.bounds.size.width, cont.view.bounds.size.height);
-  }
+
+	CGRect rect;
+	if ([command.arguments count] >= 4) {
+		NSArray *positionValues = command.arguments[3];
+		rect = CGRectMake(0,0,[[positionValues objectAtIndex:0] floatValue],[[positionValues objectAtIndex:1] floatValue]);
+	} else {
+		rect = CGRectMake(0, 0, cont.view.bounds.size.width, cont.view.bounds.size.height);
+	}
 
 	CDVViewController* cont = (CDVViewController*)[super viewController];
 	self.cdvViewController = cont;
