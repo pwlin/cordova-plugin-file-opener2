@@ -23,9 +23,15 @@ assignees: ''
 
     cordova info
 
+Here is the output:
+
+
 #### Plugin version
 
     cordova plugin version | grep cordova-plugin-file-opener2
+
+Here is the output:
+
 
 #### Sample Code that illustrates the problem
 
