@@ -1,23 +1,38 @@
-### Expected Behaviour
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
-### Actual Behaviour
+---
 
-### Reproduce Scenario (including but not limited to)
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-#### Steps to Reproduce
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-#### Platform and Version (eg. Android 5.0 or iOS 9.2.1)
+**Expected behavior**
+A clear and concise description of what you expected to happen.
 
-#### (Android) What device vendor (e.g. Samsung, HTC, Sony...)
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
 
-#### Cordova information
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
 
-    cordova info
+**Smartphone (please complete the following information):**
+ - Device: [e.g. iPhone6]
+ - OS: [e.g. iOS8.1]
+ - Browser [e.g. stock browser, safari]
+ - Version [e.g. 22]
 
-#### Plugin version
-
-    cordova plugin version | grep cordova-plugin-file-opener2
-
-#### Sample Code that illustrates the problem
-
-#### Logs taken while reproducing problem
+**Additional context**
+Add any other context about the problem here.
