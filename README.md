@@ -1,17 +1,16 @@
-A File Opener Plugin for Cordova (The Original Version)
+A File Opener Plugin for Cordova (The Original Version) [![Latest Stable Version](https://img.shields.io/npm/v/cordova-plugin-file-opener2.svg)](https://www.npmjs.com/package/cordova-plugin-file-opener2) [![Total Downloads](https://img.shields.io/npm/dt/cordova-plugin-file-opener2.svg)](https://npm-stat.com/charts.html?package=cordova-plugin-file-opener2)
 ==========================
 This plugin will open a file on your device file system with its default application.
 
-[![npm version](https://badge.fury.io/js/cordova-plugin-file-opener2.svg)](https://badge.fury.io/js/cordova-plugin-file-opener2)
 
 Requirements
 -------------
-The following platforms and versions are supported:
+The following platforms and versions are supported by the latest release:
 
 - Android 4.4+ / iOS 9+ / WP8
-- Cordova 6.0 or higher
+- Cordova 7.0 or higher
 
-Versions lower than this may still work, but are not tested.
+Cordova 6.0 is supported by 2.0.19, but there are a number of issues, particularly with Android builds (see [232](https://github.com/pwlin/cordova-plugin-file-opener2/issues/232) [203](https://github.com/pwlin/cordova-plugin-file-opener2/issues/203) [207](https://github.com/pwlin/cordova-plugin-file-opener2/issues/207)). Using the [cordova-android-support-gradle-release](https://github.com/dpa99c/cordova-android-support-gradle-release) may help.
 
 
 Installation
