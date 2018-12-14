@@ -15,8 +15,13 @@ Cordova 6.0 is supported by 2.0.19, but there are a number of issues, particular
 
 Installation
 -------------
+
 ```shell
 $ cordova plugin add cordova-plugin-file-opener2
+```
+
+From release `2.1.0` you can also set the android support version
+```shell
 $ cordova plugin add cordova-plugin-file-opener2  --variable ANDROID_SUPPORT_VERSION={required version}
 ```
 
@@ -28,12 +33,11 @@ cordova.plugins.fileOpener2.open(
     fileMIMEType,
     {
         error : function(){ },
-        success : function(){ },
-        position : [x, y]
+        success : function(){ }
     }
 );
 ```
-`position` array of coordinates from top-left device screen, use for iOS dialog positioning.
+
 
 Examples
 --------
