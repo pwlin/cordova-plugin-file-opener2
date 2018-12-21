@@ -39,14 +39,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		showPreview = [[command.arguments objectAtIndex:2] boolValue];
 	}
 
-	CGRect rect;
-	if ([command.arguments count] >= 4) {
-		NSArray *positionValues = command.arguments[3];
-		rect = CGRectMake(0,0,[[positionValues objectAtIndex:0] floatValue],[[positionValues objectAtIndex:1] floatValue]);
-	} else {
-		rect = CGRectMake(0, 0, 1000.0f, 150.0f);
-	}
-
 	CDVViewController* cont = (CDVViewController*)[super viewController];
 	self.cdvViewController = cont;
 	NSString *uti = nil;
@@ -88,6 +80,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			wasOpened = [docController presentPreviewAnimated: NO];
 		} else {
 			CDVViewController* cont = self.cdvViewController;
+			CGRect rect = CGRectMake(0, 0, cont.view.bounds.size.width, cont.view.bounds.size.height);
 			wasOpened = [docController presentOpenInMenuFromRect:rect inView:cont.view animated:YES];
 		}
 
