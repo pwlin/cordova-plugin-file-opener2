@@ -152,17 +152,6 @@ cordova.plugins.fileOpener2.appIsInstalled('com.adobe.reader', {
     }
 });
 ```
-
----
-
-## Notes
-
-- For properly opening _any_ file, you must already have a suitable reader for that particular file type installed on your device. Otherwise this will not work.
-
-- [It is reported](https://github.com/pwlin/cordova-plugin-file-opener2/issues/2#issuecomment-41295793) that in iOS, you might need to remove `<preference name="iosPersistentFileLocation" value="Library" />` from your `config.xml`
-
-- If you are wondering what MIME-type should you pass as the second argument to `open` function, [here is a list of all known MIME-types](http://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=co)
-
 ---
 
 ## Android APK installation limitation
@@ -178,4 +167,18 @@ The following limitations apply when opening an APK file for installation:
 ```
 
 - Before Android 7, you can only install APKs from the "external" partition. For example, you can install from `cordova.file.externalDataDirectory`, but **not** from `cordova.file.dataDirectory`. Android 7+ does not have this limitation.
+
+---
+
+## Notes
+
+- For properly opening _any_ file, you must already have a suitable reader for that particular file type installed on your device. Otherwise this will not work.
+
+- [It is reported](https://github.com/pwlin/cordova-plugin-file-opener2/issues/2#issuecomment-41295793) that in iOS, you might need to remove `<preference name="iosPersistentFileLocation" value="Library" />` from your `config.xml`
+
+- If you are wondering what MIME-type should you pass as the second argument to `open` function, [here is a list of all known MIME-types](http://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=co)
+
+
+---
+
 
