@@ -104,6 +104,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 @implementation FileOpener2 (UIDocumentInteractionControllerDelegate)
 	- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
-		return self.cdvViewController;
+		UIViewController *presentingViewController = self.viewController;
+		if (presentingViewController.view.window != [UIApplication sharedApplication].keyWindow){
+			presentingViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+		}
+
+		while (presentingViewController.presentedViewController != nil && ![presentingViewController.presentedViewController isBeingDismissed]){
+			presentingViewController = presentingViewController.presentedViewController;
+		}
+		return presentingViewController;
 	}
 @end
