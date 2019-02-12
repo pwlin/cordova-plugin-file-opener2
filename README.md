@@ -51,7 +51,7 @@ Open an APK install dialog:
 
 ```javascript
 cordova.plugins.fileOpener2.open(
-    '/sdcard/Download/gmail.apk',
+    '/Downloads/gmail.apk',
     'application/vnd.android.package-archive'
 );
 ```
@@ -60,7 +60,7 @@ Open a PDF document with the default PDF reader and optional callback object:
 
 ```js
 cordova.plugins.fileOpener2.open(
-    '/sdcard/Download/starwars.pdf', // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
+    '/Download/starwars.pdf', // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Downloads/starwars.pdf
     'application/pdf',
     {
         error : function(e) {
@@ -99,7 +99,7 @@ Opens with system modal to open file with an already installed app.
 
 ```js
 cordova.plugins.fileOpener2.showOpenWithDialog(
-    '/sdcard/Download/starwars.pdf', // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
+    '/Downloads/starwars.pdf', // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Downloads/starwars.pdf
     'application/pdf',
     {
         error : function(e) {
@@ -167,6 +167,12 @@ The following limitations apply when opening an APK file for installation:
 ```
 
 - Before Android 7, you can only install APKs from the "external" partition. For example, you can install from `cordova.file.externalDataDirectory`, but **not** from `cordova.file.dataDirectory`. Android 7+ does not have this limitation.
+
+---
+
+## SD card limitation on Android
+
+It is not always possible to open a file from the SD Card using this plugin on Android. This is because the underlying  Android library used [does not support serving files from secondary external storage devices](https://stackoverflow.com/questions/40318116/fileprovider-and-secondary-external-storage). Whether or not your the SD card is treated as a secondary external device depends on your particular phone's set up.
 
 ---
 
