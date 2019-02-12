@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-file-opener2",
-  "version": "2.0.19",
+  "version": "2.1.4",
   "description": "A File Opener Plugin for Cordova. (The Original Version)",
   "cordova": {
     "id": "cordova-plugin-file-opener2",
@@ -22,12 +22,9 @@
     "cordova-wp8",
     "cordova-windows"
   ],
-  "engines": [
-    {
-      "name": "cordova",
-      "version": ">=3.0.0"
-    }
-  ],
+  "engines": {
+    "cordova": ">=6.0.0"
+  },
   "author": {
     "name": "pwlin05@gmail.com"
   },
