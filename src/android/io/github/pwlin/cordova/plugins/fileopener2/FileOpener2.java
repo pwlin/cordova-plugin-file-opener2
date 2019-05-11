@@ -83,8 +83,8 @@ public class FileOpener2 extends CordovaPlugin {
 		}
 		else if (action.equals("appVersion")) {
 			JSONObject successObj = new JSONObject();
-			var appVer = this._getAppVersion(args.getString(0));
-			if (appVer != "") {
+			String appVer = this._getAppVersion(args.getString(0));
+			if (!appVer.equals("")) {
 				successObj.put("status", PluginResult.Status.OK.ordinal());
 				successObj.put("version", appVer);
 			}
@@ -96,8 +96,8 @@ public class FileOpener2 extends CordovaPlugin {
 		}
 		else if (action.equals("appVersionCode")) {
 			JSONObject successObj = new JSONObject();
-			var appVerCd = this._getAppVersionCode(args.getString(0));
-			if (appVerCd != "") {
+			int appVerCd = this._getAppVersionCode(args.getString(0));
+			if (!(appVerCd == 0)) {
 				successObj.put("status", PluginResult.Status.OK.ordinal());
 				successObj.put("versionCode", appVerCd);
 			}
@@ -204,9 +204,9 @@ public class FileOpener2 extends CordovaPlugin {
         return appInstalled;
 	}
 
-	private boolean _getAppVersion(String packageId) {
+	private String _getAppVersion(String packageId) {
 		PackageManager pm = cordova.getActivity().getPackageManager();
-        string appVersion = "";
+        String appVersion = "";
         try {
             appVersion = pm.getPackageInfo(packageId, 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
@@ -215,13 +215,13 @@ public class FileOpener2 extends CordovaPlugin {
         return appVersion;
 	}
 
-	private boolean _getAppVersionCode(String packageId) {
+	private int _getAppVersionCode(String packageId) {
 		PackageManager pm = cordova.getActivity().getPackageManager();
-        string appVersion = "";
+        int appVersion = 0;
         try {
             appVersion = pm.getPackageInfo(packageId, 0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
-            appVersion = "";
+            appVersion = 0;
         }
         return appVersion;
 	}
