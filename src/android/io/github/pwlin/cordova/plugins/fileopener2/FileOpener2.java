@@ -81,6 +81,32 @@ public class FileOpener2 extends CordovaPlugin {
 			}
 			callbackContext.success(successObj);
 		}
+		else if (action.equals("appVersion")) {
+			JSONObject successObj = new JSONObject();
+			var appVer = this._getAppVersion(args.getString(0));
+			if (appVer != "") {
+				successObj.put("status", PluginResult.Status.OK.ordinal());
+				successObj.put("version", appVer);
+			}
+			else {
+				successObj.put("status", PluginResult.Status.NO_RESULT.ordinal());
+				successObj.put("version", "Not installed");
+			}
+			callbackContext.success(successObj);
+		}
+		else if (action.equals("appVersionCode")) {
+			JSONObject successObj = new JSONObject();
+			var appVerCd = this._getAppVersionCode(args.getString(0));
+			if (appVerCd != "") {
+				successObj.put("status", PluginResult.Status.OK.ordinal());
+				successObj.put("versionCode", appVerCd);
+			}
+			else {
+				successObj.put("status", PluginResult.Status.NO_RESULT.ordinal());
+				successObj.put("versionCode", "Not installed");
+			}
+			callbackContext.success(successObj);
+		}
 		else {
 			JSONObject errorObj = new JSONObject();
 			errorObj.put("status", PluginResult.Status.INVALID_ACTION.ordinal());
@@ -121,7 +147,7 @@ public class FileOpener2 extends CordovaPlugin {
 					Context context = cordova.getActivity().getApplicationContext();
 					Uri path = FileProvider.getUriForFile(context, cordova.getActivity().getPackageName() + ".opener.provider", file);
 					intent.setDataAndType(path, contentType);
-					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
+					intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
 
 				}
 
@@ -176,6 +202,28 @@ public class FileOpener2 extends CordovaPlugin {
             appInstalled = false;
         }
         return appInstalled;
+	}
+
+	private boolean _getAppVersion(String packageId) {
+		PackageManager pm = cordova.getActivity().getPackageManager();
+        string appVersion = "";
+        try {
+            appVersion = pm.getPackageInfo(packageId, 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            appVersion = "";
+        }
+        return appVersion;
+	}
+
+	private boolean _getAppVersionCode(String packageId) {
+		PackageManager pm = cordova.getActivity().getPackageManager();
+        string appVersion = "";
+        try {
+            appVersion = pm.getPackageInfo(packageId, 0).versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            appVersion = "";
+        }
+        return appVersion;
 	}
 
 }

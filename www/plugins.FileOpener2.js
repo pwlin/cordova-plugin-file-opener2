@@ -48,4 +48,14 @@ FileOpener2.prototype.appIsInstalled = function (packageId, callbackContext) {
     exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'appIsInstalled', [packageId]);
 };
 
+FileOpener2.prototype.appVersion = function (packageId, callbackContext) {
+    callbackContext = callbackContext || {};
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'appVersion', [packageId]);
+};
+
+FileOpener2.prototype.appVersionCode = function (packageId, callbackContext) {
+    callbackContext = callbackContext || {};
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'appVersionCode', [packageId]);
+};
+
 module.exports = new FileOpener2();
