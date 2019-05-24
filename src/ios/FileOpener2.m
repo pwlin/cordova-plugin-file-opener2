@@ -31,7 +31,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - (void) open: (CDVInvokedUrlCommand*)command {
 
-	NSString *path = [[command.arguments objectAtIndex:0] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+    NSString *path = [[command.arguments objectAtIndex:0] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 	NSString *contentType = [command.arguments objectAtIndex:1];
 	BOOL showPreview = YES;
 
@@ -53,7 +53,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	}
 
 	dispatch_async(dispatch_get_main_queue(), ^{
-		NSURL *fileURL = [NSURL URLWithString:[path stringByRemovingPercentEncoding]];
+		NSURL *fileURL = [NSURL URLWithString:path];
 
 		localFile = fileURL.path;
 
