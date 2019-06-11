@@ -53,7 +53,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	}
 
 	dispatch_async(dispatch_get_main_queue(), ^{
-		NSURL *fileURL = [NSURL fileURLWithPath:[path stringByReplacingOccurrencesOfString:@"file://" withString:@""]];;
+		NSURL *fileURL = NULL;
+		NSString *decodedPath = [path stringByRemovingPercentEncoding];
+		if ([path isEqualToString:decodedPath]) {
+				NSLog(@"Path parameter not encoded. Building file URL encoding it...");
+				fileURL = [NSURL fileURLWithPath:[path stringByReplacingOccurrencesOfString:@"file://" withString:@""]];;
+		} else {
+				NSLog(@"Path parameter already encoded. Building file URL without encoding it...");
+				fileURL = [NSURL URLWithString:path];
+		}
 
 		localFile = fileURL.path;
 
