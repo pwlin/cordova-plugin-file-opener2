@@ -35,6 +35,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.webkit.MimeTypeMap;
 
 import io.github.pwlin.cordova.plugins.fileopener2.FileProvider;
 
@@ -102,6 +103,10 @@ public class FileOpener2 extends CordovaPlugin {
 		File file = new File(fileName);
 		if (file.exists()) {
 			try {
+				if (contentType == null || contentType.trim().equals("")) {
+				    contentType = _getMimeType(fileName);
+				}
+
 				Intent intent;
 				if (contentType.equals("application/vnd.android.package-archive")) {
 					// https://stackoverflow.com/questions/9637629/can-we-install-an-apk-from-a-contentprovider/9672282#9672282
@@ -149,6 +154,18 @@ public class FileOpener2 extends CordovaPlugin {
 			errorObj.put("message", "File not found");
 			callbackContext.error(errorObj);
 		}
+	}
+
+	private String _getMimeType(String url) {
+	    String mimeType = "*/*";
+	    int extensionIndex = url.lastIndexOf('.');
+	    if (extensionIndex > 0) {
+		String extMimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(url.substring(extensionIndex+1));
+		if (extMimeType != null) {
+		    mimeType = extMimeType;
+		}
+	    }
+	    return mimeType;
 	}
 
 	private void _uninstall(String packageId, CallbackContext callbackContext) throws JSONException {
