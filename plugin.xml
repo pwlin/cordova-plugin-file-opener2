@@ -62,4 +62,27 @@
             <merges target="" />
         </js-module>
     </platform>
+
+    <!-- browser -->
+    <platform name="browser">
+      <config-file parent="/*" target="config.xml">
+          <feature name="FileOpener2">
+              <param name="browser-package" value="FileOpener2"/>
+          </feature>
+      </config-file>
+
+      <!-- Required for browserify: we always link module below as there is conditional reference
+      to this module from requestFileSystem and resolveLocalFileSystemURI modules. -->
+      <js-module src="www/browser/isChrome.js" name="isChrome">
+          <runs />
+      </js-module>
+
+      <js-module src="src/browser/FileSaver.min.js" name="FileSaver">
+          <clobbers target="FileSaver"/>
+      </js-module>
+
+      <js-module src="src/browser/FileOpener2.js" name="FileOpener2Proxy">
+          <runs/>
+      </js-module>
+    </platform>
 </plugin>
