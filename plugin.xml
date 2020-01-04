@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-file-opener2" version="3.0.0">
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" id="cordova-plugin-file-opener2" version="3.0.0">
 
     <name>File Opener2</name>
     <description>A File Opener Plugin for Cordova. (The Original Version)</description>
@@ -34,9 +34,6 @@
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/opener_paths" />
           </provider>
         </config-file>
-        <edit-config target="/manifest" mode="merge" file="AndroidManifest.xml">
-            <manifest xmlns:tools="http://schemas.android.com/tools"/>
-        </edit-config>
         <source-file src="src/android/res/xml/opener_paths.xml" target-dir="res/xml" />
         <preference name="ANDROID_SUPPORT_V4_VERSION" default="27.+"/>
         <framework src="com.android.support:support-v4:$ANDROID_SUPPORT_V4_VERSION"/>
