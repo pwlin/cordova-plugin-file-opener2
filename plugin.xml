@@ -34,7 +34,7 @@
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/opener_paths" />
           </provider>
         </config-file>
-        <edit-config file="AndroidManifest.xml" target="/manifest" mode="merge">
+        <edit-config file="app/src/main/AndroidManifest.xml" target="/manifest" mode="merge">
             <manifest xmlns:tools="http://schemas.android.com/tools" />
         </edit-config>
         <source-file src="src/android/res/xml/opener_paths.xml" target-dir="res/xml" />
