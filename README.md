@@ -112,10 +112,12 @@ cordova.plugins.fileOpener2.showOpenWithDialog(
         },
         success : function () {
             console.log('file opened successfully');
-        }
+        },
+        position : [0, 0]
     }
 );
 ```
+`position` array of coordinates from top-left device screen, use for iOS dialog positioning.
 
 ## fileOpener2.uninstall(packageId, callbackContext)
 

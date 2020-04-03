@@ -31,7 +31,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - (void) open: (CDVInvokedUrlCommand*)command {
 
-    NSString *path = [command.arguments objectAtIndex:0];
+  NSString *path = [command.arguments objectAtIndex:0];
 	NSString *contentType = [command.arguments objectAtIndex:1];
 	BOOL showPreview = YES;
 
@@ -82,13 +82,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		CDVPluginResult* pluginResult = nil;
 
 		//Opens the file preview
+		CGRect rect;
+		if ([command.arguments count] >= 4) {
+			NSArray *positionValues = [command.arguments objectAtIndex:3];
+			rect = CGRectMake(0, 0, [[positionValues objectAtIndex:0] floatValue], [[positionValues objectAtIndex:1] floatValue]);
+		} else {
+			rect = CGRectMake(0, 0, cont.view.bounds.size.width, cont.view.bounds.size.height);
+		}
+
 		BOOL wasOpened = NO;
 
 		if (showPreview) {
 			wasOpened = [docController presentPreviewAnimated: NO];
 		} else {
 			CDVViewController* cont = self.cdvViewController;
-			CGRect rect = CGRectMake(cont.view.bounds.size.width, 0, cont.view.bounds.size.height, 0);
 			wasOpened = [docController presentOpenInMenuFromRect:rect inView:cont.view animated:YES];
 		}
 
