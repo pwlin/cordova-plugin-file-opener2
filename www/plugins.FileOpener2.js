@@ -34,8 +34,8 @@ FileOpener2.prototype.open = function (fileName, contentType, callbackContext) {
 
 FileOpener2.prototype.showOpenWithDialog = function (fileName, contentType, callbackContext) {
     contentType = contentType || '';
-    callbackContext = {...callbackContext, position: callbackContext.position ? callbackContext.position : [0, 0]};
-    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType, false, callbackContext.position]);
+    callbackContext = callbackContext || {};
+    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType, false, callbackContext.position || [0, 0]]);
 };
 
 FileOpener2.prototype.uninstall = function (packageId, callbackContext) {
