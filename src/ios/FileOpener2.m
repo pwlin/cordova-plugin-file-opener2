@@ -83,10 +83,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 		//Opens the file preview
 		CGRect rect;
-		if ([command.arguments count] >= 4
-			&& ![[command.arguments objectAtIndex:3] isEqual: [NSNull null]]) {
+		if ([command.arguments count] >= 4) {
 			NSArray *positionValues = [command.arguments objectAtIndex:3];
-			rect = CGRectMake(0, 0, [[positionValues objectAtIndex:0] floatValue], [[positionValues objectAtIndex:1] floatValue]);
+          
+        		if (![positionValues isEqual:[NSNull null]] && [positionValues count] >= 2) {
+                		rect = CGRectMake(0, 0, [[positionValues objectAtIndex:0] floatValue], [[positionValues objectAtIndex:1] floatValue]);
+        		} else {
+                		rect = CGRectMake(0, 0, 0, 0);
+        		}
 		} else {
 			rect = CGRectMake(0, 0, cont.view.bounds.size.width, cont.view.bounds.size.height);
 		}
