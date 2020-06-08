@@ -133,7 +133,9 @@ cordova.plugins.fileOpener2.showOpenWithDialog(
 
 ## fileOpener2.uninstall(packageId, callbackContext)
 
-Uninstall a package with its ID
+Uninstall a package with its ID. 
+
+__Note__: You need to add `<uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />` to your `AndroidManifest.xml`
 
 ### Supported Platforms
 
