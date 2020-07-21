@@ -34,14 +34,14 @@ function open(successCallback, errorCallback, data) {
   var fileSystemLocalPath = getLocalPathAndFileSystem(dirPath);
 
   if (!fileSystemLocalPath.error) {
-    window.requestFileSystem(fileSystemLocalPath.fileSystem, 0, (fs) => {
-      readFile(fs.root, fileSystemLocalPath.localPath + fileName).then((blob) => {
+    window.requestFileSystem(fileSystemLocalPath.fileSystem, 0, function (fs) {
+      readFile(fs.root, fileSystemLocalPath.localPath + fileName).then(function (blob) {
         FileSaver.saveAs(blob, fileName);
         successCallback();
-      }).catch((error) => {
+      }).catch(function (error) {
         errorCallback(error);
       });
-    }, (error) => {
+    }, function (error) {
       errorCallback(error);
     });
   } else {
@@ -75,7 +75,7 @@ function getLocalPathAndFileSystem(pathToCheck) {
     ret.fileSystem = window.PERSISTENT;
 
   } else {
-    return {error: true, message: 'INVALID_PATH'};
+    return { error: true, message: 'INVALID_PATH' };
   }
 
   if (!ret.localPath.endsWith('/')) ret.localPath += '/';
@@ -92,27 +92,27 @@ function getLocalPathAndFileSystem(pathToCheck) {
  * @returns {Promise} which resolves with an Object containing DataURL, rejects if something went wrong.
  */
 function readFile(root, filePath) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function (resolve, reject) {
     if (filePath.startsWith('/')) filePath = filePath.substring(1);
 
-    root.getFile(filePath, {}, (fileEntry) => {
-      fileEntry.file((file) => {
+    root.getFile(filePath, {}, function (fileEntry) {
+      fileEntry.file(function (file) {
         let reader = new FileReader();
 
-        reader.onload = function() {
+        reader.onload = function () {
           resolve(reader.result);
         };
 
-        reader.onerror = function() {
+        reader.onerror = function () {
           reject(reader.error);
         }
 
         reader.readAsDataURL(file);
 
-      }, (error) => {
+      }, function (error) {
         reject(error);
       });
-    }, (error) => {
+    }, function (error) {
       reject(error);
     });
   });
@@ -122,4 +122,4 @@ module.exports = {
   open: open
 };
 
-require( "cordova/exec/proxy" ).add( "FileOpener2", module.exports );
+require("cordova/exec/proxy").add("FileOpener2", module.exports);
