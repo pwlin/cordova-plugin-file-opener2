@@ -1,14 +1,14 @@
 {
   "name": "cordova-plugin-file-opener2",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "A File Opener Plugin for Cordova. (The Original Version)",
   "cordova": {
     "id": "cordova-plugin-file-opener2",
     "platforms": [
       "android",
       "ios",
-      "wp8",
-      "windows"
+      "windows",
+      "electron"
     ]
   },
   "repository": {
@@ -19,8 +19,8 @@
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios",
-    "cordova-wp8",
-    "cordova-windows"
+    "cordova-windows",
+    "cordova-electron"
   ],
   "engines": {
     "cordova": ">=6.0.0"
