@@ -61,7 +61,7 @@ Opens a file
 - Android 4.4+
 - iOS 9+
 - Windows
-- WP8
+- Electron
 
 ### Quick Examples
 Open an APK install dialog:
@@ -89,6 +89,8 @@ cordova.plugins.fileOpener2.open(
     }
 );
 ```
+
+__Note on Electron:__ Do not forget to enable Node.js in your app by adding `"nodeIntegration": true` to `platforms/electron/platform_www/cdv-electron-settings.json` file, See [Cordova-Electron documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/electron/index.html#customizing-the-application's-window-options).
 
 ### Market place installation
 Install From Market: to install an APK from a market place, such as Google Play or the App Store, you can use an `<a>` tag in combination with the `market://` protocol:

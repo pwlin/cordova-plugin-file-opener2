@@ -86,4 +86,12 @@
           <runs/>
       </js-module>
     </platform>
+
+    <!-- electron -->
+    <platform name="electron">
+        <js-module src="src/electron/FileOpener2.js" name="fileOpener2">
+            <merges target="" />
+        </js-module>
+    </platform>
+
 </plugin>
