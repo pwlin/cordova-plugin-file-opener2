@@ -90,11 +90,11 @@ NSString* callbackId = nil;
 		if ([command.arguments count] >= 4) {
 			NSArray *positionValues = [command.arguments objectAtIndex:3];
 
-        	if (![positionValues isEqual:[NSNull null]] && [positionValues count] >= 2) {
+			if (![positionValues isEqual:[NSNull null]] && [positionValues count] >= 2) {
 				rect = CGRectMake(0, 0, [[positionValues objectAtIndex:0] floatValue], [[positionValues objectAtIndex:1] floatValue]);
 			} else {
 				rect = CGRectMake(0, 0, 0, 0);
-        	}
+			}
 		} else {
 			rect = CGRectMake(0, 0, cont.view.bounds.size.width, cont.view.bounds.size.height);
 		}
