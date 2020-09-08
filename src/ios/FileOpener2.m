@@ -46,7 +46,7 @@ NSString* callbackId = nil;
 	self.cdvViewController = cont;
 	NSString *uti = nil;
 
-	if([contentType length] == 0){
+	if ([contentType length] == 0) {
 		NSArray *dotParts = [path componentsSeparatedByString:@"."];
 		NSString *fileExt = [dotParts lastObject];
 
@@ -72,7 +72,7 @@ NSString* callbackId = nil;
 	    NSLog(@"looking for file at %@", fileURL);
 	    NSFileManager *fm = [NSFileManager defaultManager];
 
-	    if(![fm fileExistsAtPath:localFile]) {
+        if (![fm fileExistsAtPath:localFile]) {
 	    	NSDictionary *jsonObj = @{@"status" : @"9",
 	    	@"message" : @"File does not exist"};
 	    	CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:jsonObj];
@@ -83,8 +83,6 @@ NSString* callbackId = nil;
 		docController = [UIDocumentInteractionController  interactionControllerWithURL:fileURL];
 		docController.delegate = self;
 		docController.UTI = uti;
-
-		CDVPluginResult* pluginResult = nil;
 
 		//Opens the file preview
 		CGRect rect;
@@ -133,11 +131,12 @@ NSString* callbackId = nil;
 
 - (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
 	UIViewController *presentingViewController = self.viewController;
-	if (presentingViewController.view.window != [UIApplication sharedApplication].keyWindow){
+
+	if (presentingViewController.view.window != [UIApplication sharedApplication].keyWindow) {
 		presentingViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
 	}
 
-	while (presentingViewController.presentedViewController != nil && ![presentingViewController.presentedViewController isBeingDismissed]){
+    while (presentingViewController.presentedViewController != nil && ![presentingViewController.presentedViewController isBeingDismissed]) {
 		presentingViewController = presentingViewController.presentedViewController;
 	}
 
