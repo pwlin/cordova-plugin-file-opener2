@@ -84,6 +84,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 		//Opens the file preview
 		CGRect rect;
+
 		if ([command.arguments count] >= 4) {
 			NSArray *positionValues = [command.arguments objectAtIndex:3];
 
@@ -105,7 +106,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			wasOpened = [docController presentOpenInMenuFromRect:rect inView:cont.view animated:YES];
 		}
 
-		if(wasOpened) {
+		if (wasOpened) {
 			pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @""];
 		} else {
 			NSDictionary *jsonObj = [ [NSDictionary alloc]
@@ -133,6 +134,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		while (presentingViewController.presentedViewController != nil && ![presentingViewController.presentedViewController isBeingDismissed]){
 			presentingViewController = presentingViewController.presentedViewController;
 		}
+
 		return presentingViewController;
 	}
 @end
