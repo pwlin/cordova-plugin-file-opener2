@@ -127,20 +127,21 @@ NSString* callbackId = nil;
 @end
 
 @implementation FileOpener2 (UIDocumentInteractionControllerDelegate)
-	- (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller {
-		[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+- (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller {
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+}
+
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+	UIViewController *presentingViewController = self.viewController;
+	if (presentingViewController.view.window != [UIApplication sharedApplication].keyWindow){
+		presentingViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
 	}
 
-	- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
-		UIViewController *presentingViewController = self.viewController;
-		if (presentingViewController.view.window != [UIApplication sharedApplication].keyWindow){
-			presentingViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-		}
-
-		while (presentingViewController.presentedViewController != nil && ![presentingViewController.presentedViewController isBeingDismissed]){
-			presentingViewController = presentingViewController.presentedViewController;
-		}
-
-		return presentingViewController;
+	while (presentingViewController.presentedViewController != nil && ![presentingViewController.presentedViewController isBeingDismissed]){
+		presentingViewController = presentingViewController.presentedViewController;
 	}
+
+	return presentingViewController;
+}
+
 @end
