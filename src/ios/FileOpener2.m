@@ -29,8 +29,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 @implementation FileOpener2
 @synthesize controller = docController;
 
+CDVPluginResult* pluginResult = nil;
+NSString* callbackId = nil;
+
 - (void) open: (CDVInvokedUrlCommand*)command {
-  	NSString *path = [command.arguments objectAtIndex:0];
+	callbackId = command.callbackId;
+	NSString *path = [command.arguments objectAtIndex:0];
 	NSString *contentType = [command.arguments objectAtIndex:1];
 	BOOL showPreview = YES;
 
@@ -117,14 +121,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			];
 			pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:jsonObj];
 		}
-
-		[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 	});
 }
 
 @end
 
 @implementation FileOpener2 (UIDocumentInteractionControllerDelegate)
+	- (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller {
+		[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+	}
+
 	- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
 		UIViewController *presentingViewController = self.viewController;
 		if (presentingViewController.view.window != [UIApplication sharedApplication].keyWindow){
