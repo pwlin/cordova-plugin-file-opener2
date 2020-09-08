@@ -69,15 +69,15 @@ NSString* callbackId = nil;
 
 		localFile = fileURL.path;
 
-	    NSLog(@"looking for file at %@", fileURL);
-	    NSFileManager *fm = [NSFileManager defaultManager];
+		NSLog(@"looking for file at %@", fileURL);
+		NSFileManager *fm = [NSFileManager defaultManager];
 
-        if (![fm fileExistsAtPath:localFile]) {
+    	if (![fm fileExistsAtPath:localFile]) {
 	    	NSDictionary *jsonObj = @{@"status" : @"9",
 	    	@"message" : @"File does not exist"};
 	    	CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:jsonObj];
-	      	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-	      	return;
+	    	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+	    	return;
     	}
 
 		docController = [UIDocumentInteractionController  interactionControllerWithURL:fileURL];
@@ -91,7 +91,7 @@ NSString* callbackId = nil;
 			NSArray *positionValues = [command.arguments objectAtIndex:3];
 
         	if (![positionValues isEqual:[NSNull null]] && [positionValues count] >= 2) {
-                rect = CGRectMake(0, 0, [[positionValues objectAtIndex:0] floatValue], [[positionValues objectAtIndex:1] floatValue]);
+            	rect = CGRectMake(0, 0, [[positionValues objectAtIndex:0] floatValue], [[positionValues objectAtIndex:1] floatValue]);
         	} else {
             	rect = CGRectMake(0, 0, 0, 0);
         	}
@@ -118,7 +118,7 @@ NSString* callbackId = nil;
 				nil
 			];
 			pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:jsonObj];
-            [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+        	[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 		}
 	});
 }
@@ -127,11 +127,11 @@ NSString* callbackId = nil;
 
 @implementation FileOpener2 (UIDocumentInteractionControllerDelegate)
 - (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller {
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 }
 
 - (void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller {
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 }
 
 - (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
@@ -141,7 +141,7 @@ NSString* callbackId = nil;
 		presentingViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
 	}
 
-    while (presentingViewController.presentedViewController != nil && ![presentingViewController.presentedViewController isBeingDismissed]) {
+	while (presentingViewController.presentedViewController != nil && ![presentingViewController.presentedViewController isBeingDismissed]) {
 		presentingViewController = presentingViewController.presentedViewController;
 	}
 
