@@ -30,8 +30,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 @synthesize controller = docController;
 
 - (void) open: (CDVInvokedUrlCommand*)command {
-
-  NSString *path = [command.arguments objectAtIndex:0];
+  	NSString *path = [command.arguments objectAtIndex:0];
 	NSString *contentType = [command.arguments objectAtIndex:1];
 	BOOL showPreview = YES;
 
@@ -55,18 +54,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	dispatch_async(dispatch_get_main_queue(), ^{
 		NSURL *fileURL = NULL;
 		NSString *decodedPath = [path stringByRemovingPercentEncoding];
+
 		if ([path isEqualToString:decodedPath]) {
-				NSLog(@"Path parameter not encoded. Building file URL encoding it...");
-				fileURL = [NSURL fileURLWithPath:[path stringByReplacingOccurrencesOfString:@"file://" withString:@""]];;
+			NSLog(@"Path parameter not encoded. Building file URL encoding it...");
+			fileURL = [NSURL fileURLWithPath:[path stringByReplacingOccurrencesOfString:@"file://" withString:@""]];;
 		} else {
-				NSLog(@"Path parameter already encoded. Building file URL without encoding it...");
-				fileURL = [NSURL URLWithString:path];
+			NSLog(@"Path parameter already encoded. Building file URL without encoding it...");
+			fileURL = [NSURL URLWithString:path];
 		}
 
 		localFile = fileURL.path;
 
 	    NSLog(@"looking for file at %@", fileURL);
 	    NSFileManager *fm = [NSFileManager defaultManager];
+
 	    if(![fm fileExistsAtPath:localFile]) {
 	    	NSDictionary *jsonObj = @{@"status" : @"9",
 	    	@"message" : @"File does not exist"};
@@ -85,12 +86,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		CGRect rect;
 		if ([command.arguments count] >= 4) {
 			NSArray *positionValues = [command.arguments objectAtIndex:3];
-          
-        		if (![positionValues isEqual:[NSNull null]] && [positionValues count] >= 2) {
-                		rect = CGRectMake(0, 0, [[positionValues objectAtIndex:0] floatValue], [[positionValues objectAtIndex:1] floatValue]);
-        		} else {
-                		rect = CGRectMake(0, 0, 0, 0);
-        		}
+
+        	if (![positionValues isEqual:[NSNull null]] && [positionValues count] >= 2) {
+                rect = CGRectMake(0, 0, [[positionValues objectAtIndex:0] floatValue], [[positionValues objectAtIndex:1] floatValue]);
+        	} else {
+            	rect = CGRectMake(0, 0, 0, 0);
+        	}
 		} else {
 			rect = CGRectMake(0, 0, cont.view.bounds.size.width, cont.view.bounds.size.height);
 		}
@@ -116,6 +117,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			];
 			pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:jsonObj];
 		}
+
 		[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 	});
 }
