@@ -107,7 +107,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 		if(wasOpened) {
 			pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @""];
-			//NSLog(@"Success");
 		} else {
 			NSDictionary *jsonObj = [ [NSDictionary alloc]
 				initWithObjectsAndKeys :
