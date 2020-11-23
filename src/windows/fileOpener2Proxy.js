@@ -68,11 +68,16 @@ module.exports = {
     open: function (successCallback, errorCallback, args) {
 
         var path = args[0];
+        var openAsDefault = true;
+        if (args.length > 2) {
+            openAsDefault = args[2];
+        }
 
         var getFile = getFileLoaderForScheme(path);
 
         getFile(path).then(function (file) {
             var options = new Windows.System.LauncherOptions();
+            options.displayApplicationPicker = !openAsDefault;
 
             try{
                 Windows.System.Launcher.launchFileAsync(file, options).then(function (success) {
