@@ -123,6 +123,7 @@ public class FileOpener2 extends CordovaPlugin {
 
                 } else {
                     Context context = cordova.getActivity().getApplicationContext();
+                    context.getApplicationContext().grantUriPermission(context.getPackageName(), MediaStore.Downloads.EXTERNAL_CONTENT_URI, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                     intent = new Intent(Intent.ACTION_VIEW);
                     intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
@@ -151,6 +152,7 @@ public class FileOpener2 extends CordovaPlugin {
                                 path = ContentUris.withAppendedId(MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL), id);
                                 intent.setDataAndType(path, contentType);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 Log.d("PATH ARCHIVE: ", path.toString());
                             }
 
