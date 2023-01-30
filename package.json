@@ -23,7 +23,17 @@
     "cordova-electron"
   ],
   "engines": {
-    "cordova": ">=6.0.0"
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova": ">=6.0.0"
+      },
+      "3.0.0": {
+        "cordova": ">=7.0.0"
+      },
+      "4.0.0": {
+        "cordova-android": ">=10.0.0"
+      }
+    }
   },
   "author": {
     "name": "pwlin05@gmail.com"

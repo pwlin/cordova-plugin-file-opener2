@@ -5,10 +5,6 @@
     <description>A File Opener Plugin for Cordova. (The Original Version)</description>
     <license>MIT</license>
 
-    <engines>
-        <engine name="cordova" version=">=3.0.0" />
-    </engines>
-
     <js-module src="www/plugins.FileOpener2.js" name="FileOpener2">
         <clobbers target="cordova.plugins.fileOpener2" />
     </js-module>
@@ -32,8 +28,6 @@
           </provider>
         </config-file>
         <source-file src="src/android/res/xml/opener_paths.xml" target-dir="res/xml" />
-        <preference name="ANDROID_SUPPORT_V4_VERSION" default="27.+"/>
-        <framework src="com.android.support:support-v4:$ANDROID_SUPPORT_V4_VERSION"/>
     </platform>
 
     <!-- iOS -->

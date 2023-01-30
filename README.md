@@ -21,36 +21,14 @@ cordova.plugins.fileOpener2.open(
 $ cordova plugin add cordova-plugin-file-opener2
 ```
 
-### Optional variables
-
-This plugin requires the Android support library v4. From release `2.1.0` the version of this can be set at installation. The minimum version is `24.1.0`. Default value is `27.+`. [Check out the latest version](https://developer.android.com/topic/libraries/support-library/revisions.html).
-
-```shell
-$ cordova plugin add cordova-plugin-file-opener2  --variable ANDROID_SUPPORT_V4_VERSION="27.+"
-```
-
-If you are using the `cordova-android-support-gradle-release` plugin it should match the value you have set there.
-
 ## Requirements
 
 The following platforms and versions are supported by the latest release:
 
-- Android 4.4+ / iOS 9+ / Windows / Electron
+- Android 5.1+ / iOS 9+ / Windows / Electron
 - Cordova CLI 7.0 or higher
 
 Cordova CLI 6.0 is supported by 2.0.19, but there are a number of issues, particularly with Android builds (see [232](https://github.com/pwlin/cordova-plugin-file-opener2/issues/232) [203](https://github.com/pwlin/cordova-plugin-file-opener2/issues/203) [207](https://github.com/pwlin/cordova-plugin-file-opener2/issues/207)). Using the [cordova-android-support-gradle-release](https://github.com/dpa99c/cordova-android-support-gradle-release) plugin may help.
-
-### AndroidX Support
-
-Currently if your project requires AndroidX support, you need to add the following two plugins to your project:
-
-- [cordova-plugin-androidx](https://github.com/dpa99c/cordova-plugin-androidx/) and [cordova-plugin-androidx-adapter](https://github.com/dpa99c/cordova-plugin-androidx-adapter/)
-```shell
-$ cordova plugin add cordova-plugin-androidx
-$ cordova plugin add cordova-plugin-androidx-adapter
-```
-Just adding these plugins should be enough and no further changes are necessary.
-
 
 ## fileOpener2.open(filePath, mimeType, options)
 
@@ -58,7 +36,7 @@ Opens a file
 
 ### Supported Platforms
 
-- Android 4.4+
+- Android 5.1+
 - iOS 9+
 - Windows
 - Electron
@@ -111,7 +89,7 @@ Opens with system modal to open file with an already installed app.
 
 ### Supported Platforms
 
-- Android 4.4+
+- Android 5.1+
 - iOS 9+
 
 ### Quick Example
@@ -141,7 +119,7 @@ __Note__: You need to add `<uses-permission android:name="android.permission.REQ
 
 ### Supported Platforms
 
-- Android 4.4+
+- Android 5.1+
 
 ### Quick Example
 ```js
@@ -161,7 +139,7 @@ Check if an app is already installed.
 
 ### Supported Platforms
 
-- Android 4.4+
+- Android 5.1+
 
 ### Quick Example
 ```javascript
