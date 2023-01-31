@@ -1,3 +1,11 @@
+ ⛔️  NO LONGER MAINTAINED ⛔️ 
+
+This plugin was originally built back in 2013 to provide an easy way to open files in Cordova applications. Since 2018 the plugin has not been actively maintained, with only the occaisional release to support updates from the community. Due to signficant changes in the way that Android handles permissions from version 11 onwards, this plugin does not work with Android 11 or later and would require significant changes to make this happen. 
+
+If someone would like to take on this work and maintain the plugin moving forward please get in touch.
+
+----------
+
 # A File Opener Plugin for Cordova
 
 [![Latest Stable Version](https://img.shields.io/npm/v/cordova-plugin-file-opener2.svg)](https://www.npmjs.com/package/cordova-plugin-file-opener2) [![Total Downloads](https://img.shields.io/npm/dt/cordova-plugin-file-opener2.svg)](https://npm-stat.com/charts.html?package=cordova-plugin-file-opener2)
