@@ -30,6 +30,9 @@ The following platforms and versions are supported by the latest release:
 
 Cordova CLI 6.0 is supported by 2.0.19, but there are a number of issues, particularly with Android builds (see [232](https://github.com/pwlin/cordova-plugin-file-opener2/issues/232) [203](https://github.com/pwlin/cordova-plugin-file-opener2/issues/203) [207](https://github.com/pwlin/cordova-plugin-file-opener2/issues/207)). Using the [cordova-android-support-gradle-release](https://github.com/dpa99c/cordova-android-support-gradle-release) plugin may help.
 
+### Edit support 
+The plugin currently does *not* support the editing of files on Android. It may support editing on iOS, but this has not been tested yet. 
+
 ## fileOpener2.open(filePath, mimeType, options)
 
 Opens a file
