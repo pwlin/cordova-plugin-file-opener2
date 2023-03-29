@@ -38,11 +38,6 @@ FileOpener2.prototype.showOpenWithDialog = function (fileName, contentType, call
     exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'open', [fileName, contentType, false, callbackContext.position || [0, 0]]);
 };
 
-FileOpener2.prototype.uninstall = function (packageId, callbackContext) {
-    callbackContext = callbackContext || {};
-    exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'uninstall', [packageId]);
-};
-
 FileOpener2.prototype.appIsInstalled = function (packageId, callbackContext) {
     callbackContext = callbackContext || {};
     exec(callbackContext.success || null, callbackContext.error || null, 'FileOpener2', 'appIsInstalled', [packageId]);
