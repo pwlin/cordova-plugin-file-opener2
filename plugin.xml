@@ -18,9 +18,6 @@
                 <param name="android-package" value="io.github.pwlin.cordova.plugins.fileopener2.FileOpener2" />
             </feature>
         </config-file>
-        <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-        </config-file>
         <config-file target="AndroidManifest.xml" parent="application">
           <provider android:name="io.github.pwlin.cordova.plugins.fileopener2.FileProvider" android:authorities="${applicationId}.fileOpener2.provider" android:exported="false" android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/opener_paths" />
