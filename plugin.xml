@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-ns0m-file-opener2" version="4.0.0">
-
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-ns0m-file-opener2"
+        version="4.0.0">
     <name>File Opener2</name>
     <description>A File Opener Plugin for Cordova. (The Original Version)</description>
     <license>MIT</license>
+    <repo>https://github.com/ns0m/cordova-plugin-ns0m-file-opener2</repo>
+    <issue>https://github.com/ns0m/cordova-plugin-ns0m-file-opener2/issues</issue>
 
     <js-module src="www/plugins.FileOpener2.js" name="FileOpener2">
         <clobbers target="cordova.plugins.fileOpener2" />
@@ -86,5 +90,4 @@
             <merges target="" />
         </js-module>
     </platform>
-
 </plugin>
