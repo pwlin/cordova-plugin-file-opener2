@@ -26,9 +26,9 @@
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
         <config-file target="AndroidManifest.xml" parent="application">
-          <provider android:name="io.github.pwlin.cordova.plugins.fileopener2.FileProvider" android:authorities="${applicationId}.fileOpener2.provider" android:exported="false" android:grantUriPermissions="true">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/opener_paths" />
-          </provider>
+            <provider android:name="io.github.pwlin.cordova.plugins.fileopener2.FileProvider" android:authorities="${applicationId}.fileOpener2.provider" android:exported="false" android:grantUriPermissions="true">
+                <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/opener_paths" />
+            </provider>
         </config-file>
         <source-file src="src/android/res/xml/opener_paths.xml" target-dir="res/xml" />
     </platform>
@@ -44,17 +44,17 @@
         <header-file src="src/ios/FileOpener2.h" />
     </platform>
 
-	<!-- WP8 -->
-	<platform name="wp8">
-		<config-file target="config.xml" parent="/*">
-		  <feature name="FileOpener2">
-			<param name="wp-package" value="FileOpener2" />
-		  </feature>
-		</config-file>
-		<source-file src="src/wp8/FileOpener2.cs" />
-	</platform>
+    <!-- WP8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="FileOpener2">
+                <param name="wp-package" value="FileOpener2" />
+            </feature>
+        </config-file>
+        <source-file src="src/wp8/FileOpener2.cs" />
+    </platform>
 
-	<!-- windows -->
+    <!-- windows -->
     <platform name="windows">
         <js-module src="src/windows/fileOpener2Proxy.js" name="fileOpener2Proxy">
             <merges target="" />
@@ -63,25 +63,25 @@
 
     <!-- browser -->
     <platform name="browser">
-      <config-file parent="/*" target="config.xml">
-          <feature name="FileOpener2">
-              <param name="browser-package" value="FileOpener2"/>
-          </feature>
-      </config-file>
+        <config-file parent="/*" target="config.xml">
+            <feature name="FileOpener2">
+                <param name="browser-package" value="FileOpener2" />
+            </feature>
+        </config-file>
 
-      <!-- Required for browserify: we always link module below as there is conditional reference
-      to this module from requestFileSystem and resolveLocalFileSystemURI modules. -->
-      <js-module src="www/browser/isChrome.js" name="isChrome">
-          <runs />
-      </js-module>
+        <!-- Required for browserify: we always link module below as there is conditional reference
+        to this module from requestFileSystem and resolveLocalFileSystemURI modules. -->
+        <js-module src="www/browser/isChrome.js" name="isChrome">
+            <runs />
+        </js-module>
 
-      <js-module src="src/browser/FileSaver.min.js" name="FileSaver">
-          <clobbers target="FileSaver"/>
-      </js-module>
+        <js-module src="src/browser/FileSaver.min.js" name="FileSaver">
+            <clobbers target="FileSaver" />
+        </js-module>
 
-      <js-module src="src/browser/FileOpener2.js" name="FileOpener2Proxy">
-          <runs/>
-      </js-module>
+        <js-module src="src/browser/FileOpener2.js" name="FileOpener2Proxy">
+            <runs />
+        </js-module>
     </platform>
 
     <!-- electron -->
