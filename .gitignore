@@ -7,3 +7,10 @@
 *.war
 *.ear
 *.bak
+
+.idea
+*.iml
+
+*.tgz
+
+node_modules
