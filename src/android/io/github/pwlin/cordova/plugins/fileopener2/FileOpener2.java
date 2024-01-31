@@ -23,6 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package io.github.pwlin.cordova.plugins.fileopener2;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -36,6 +37,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.webkit.MimeTypeMap;
+import android.os.Environment;
 
 import io.github.pwlin.cordova.plugins.fileopener2.FileProvider;
 
@@ -93,14 +95,17 @@ public class FileOpener2 extends CordovaPlugin {
 
 	private void _open(String fileArg, String contentType, Boolean openWithDefault, CallbackContext callbackContext) throws JSONException {
 		String fileName = "";
+		List<String> fileUriSegments = new ArrayList<>();
 		try {
-			CordovaResourceApi resourceApi = webView.getResourceApi();
-			Uri fileUri = resourceApi.remapUri(Uri.parse(fileArg));
-			fileName = fileUri.getPath();
+			fileUriSegments = Uri.parse(fileArg).getPathSegments();
+			if(!fileUriSegments.isEmpty()) {
+				int numSegments = fileUriSegments.size() - 1;
+				fileName = fileUriSegments.get(numSegments);
+			}
 		} catch (Exception e) {
 			fileName = fileArg;
 		}
-		File file = new File(fileName);
+		File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName);
 		if (file.exists()) {
 			try {
 				if (contentType == null || contentType.trim().equals("")) {
